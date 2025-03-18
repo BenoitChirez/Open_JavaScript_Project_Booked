@@ -1,0 +1,50 @@
+* {
+    font-size: 18px; /* defini la taille de la police universel */
+    font-family: 'Poppins', sans-serif; /* defini le style de la police universel */
+}
+/* Style général de la barre de navigation */
+nav {
+    background: linear-gradient(135deg, #1E1E1E, #333); /* Dégradé moderne */
+    padding: 15px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Ombre légère */
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Centrer les éléments de navigation */
+.nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    padding: 0;
+    margin: 0;
+}
+
+/* Style des liens dans les cases */
+.nav-list li a {
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(135deg, #444, #666); /* Effet de profondeur */
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    display: inline-block;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Effet au survol */
+.nav-list li a:hover {
+    background: linear-gradient(135deg, #666, #888);
+    transform: scale(1.1); /* Légère expansion */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Effet au clic */
+.nav-list li a:active {
+    transform: scale(0.95);
+}
