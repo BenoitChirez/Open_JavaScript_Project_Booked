@@ -1,6 +1,7 @@
 * {
     font-size: 18px; /* defini la taille de la police universel */
     font-family: 'Poppins', sans-serif; /* defini le style de la police universel */
+    margin: 0;
 }
 /* Style général de la barre de navigation */
 nav {
