@@ -1,4 +1,10 @@
-.styled-table {
+/*
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////                     Style CSS pour le tableau                     ////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+*/
+
+.table_reservation {
     border-collapse: collapse;
     font-size: 0.9em;
     font-family: sans-serif;
@@ -9,31 +15,31 @@
     margin-bottom: 10px;
 }
 
-.styled-table thead tr {
+.table_reservation thead tr {
     background-color: #009879;
     color: #ffffff;
     text-align: left;
 }
 
-.styled-table th,
-.styled-table td {
+.table_reservation th,
+.table_reservation td {
     padding: 12px 15px;
     text-align: center;
 }
 
-.styled-table tbody tr {
+.table_reservation tbody tr {
     border-bottom: 1px solid #dddddd;
 }
 
-.styled-table tbody tr:nth-of-type(even) {
+.table_reservation tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
 }
 
-.styled-table tbody tr:last-of-type {
+.table_reservation tbody tr:last-of-type {
     border-bottom: 2px solid #009879;
 }
 
-.styled-table tbody tr.active-row {
+.table_reservation tbody tr.active-row {
     font-weight: bold;
     color: #009879;
 }
@@ -71,4 +77,32 @@ h2 {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+
+/*
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////                   Fonctionnalité tri du tableau                   ////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+*/
+
+.table_reservation th{
+    cursor : pointer;
+}
+
+.table_reservation .th-sort-asc::after {
+    content: "\25b4" /* Fait le triangle vers le haut pour montrer que c'est trié dans l'ordre croissant */
+}
+
+.table_reservation .th-sort-desc::after {
+    content: "\25be" /* Fait le triangle vers le bas pour montrer que c'est trié dans l'ordre décroissant */
+}
+
+.table_reservation .th-sort-asc::after, 
+.table_reservation .th-sort-desc::after {
+    margin-left : 5px;
+}
+
+.table_reservation .th-sort-asc, 
+.table_reservation .th-sort-desc {
+    background : rgba(0, 0, 0, 0.1)
+} 
 
