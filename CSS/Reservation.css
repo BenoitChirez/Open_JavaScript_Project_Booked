@@ -1,3 +1,9 @@
+main {
+    min-height: 70vh; /* prend au moins toute la hauteur de la fenêtre */
+    display: flex;
+    flex-direction: column;
+}
+
 /*
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////                     Style CSS pour le tableau                     ////////////////
@@ -121,4 +127,29 @@ h2 {
 .animated-row {
     animation: fadeTri 0.3s ease forwards;
 }
-  
+
+/*
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////                    Supression ligne du tableau                    ////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+*/
+
+/* Animation de disparition */
+@keyframes fadeOutRow {
+    0% {
+        opacity: 1;
+        background: linear-gradient(135deg, #edb5b3, #f19592);
+        transform: scale(1);
+        height: auto;
+    }
+    100% {
+        opacity: 0;
+        background: linear-gradient(135deg, #edb5b3, #f19592);
+        transform: scale(0.95);
+        height: 0;
+    }
+}
+
+.fade-out {
+    animation: fadeOutRow 0.6s ease forwards;
+}

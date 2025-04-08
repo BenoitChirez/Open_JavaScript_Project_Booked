@@ -52,3 +52,20 @@ document.querySelectorAll(".table_reservation th").forEach(headerCell => {
         TrieTableauParColonne(tableElement, headerIndice, !estAsc); // Application de la fonction.
     });
 });
+
+document.querySelectorAll(".table_reservation button").forEach(button => {
+    button.addEventListener("click", function () {
+        const ligne = this.closest("tr");
+        const confirmation = confirm("Voulez-vous vraiment supprimer cette réservation ?");
+        
+        if (confirmation) {
+            ligne.classList.add("fade-out");
+
+            // Attendre la fin de l'animation (400 ms) pour supprimer la ligne
+            setTimeout(() => {
+                ligne.remove();
+            }, 400);
+        }
+    });
+});
+
