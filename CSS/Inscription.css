@@ -1,0 +1,21 @@
+
+  main#tableau {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);   /* 3 colonnes de taille égale */
+    grid-template-rows: repeat(6, 1fr);      /* 6 lignes */
+    width: 100vw;                             /* Toute la largeur de la fenêtre */
+    max-width: 100%;                          /* Pas de dépassement */
+    height: 600px;                            /* Hauteur fixe */
+    border: 2px solid #000;
+    box-sizing: border-box;                  /* Inclut la bordure dans la taille */
+  }
+  
+  .cellule {
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    background-color: white;
+  }
+  
