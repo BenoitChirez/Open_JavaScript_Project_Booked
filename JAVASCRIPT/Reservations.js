@@ -9,7 +9,7 @@ function TrieTableauParColonne(table, colonne, asc = true){
     const tableBody = table.tBodies[0]; // Séléctionne la partie <tbody></tbody> de notre tableau.
     const tableRows = Array.from(tableBody.querySelectorAll("tr")); // Séléctionne toutes les lignes du tableau et les mets dans un tableau.
     const dirModif = asc ? 1 : -1;
-    
+
     // Si la colonne est la dernière
     if (colonne === table.rows[0].cells.length - 1) {
         return; // On ne fait rien et on retourne rien.
@@ -29,7 +29,13 @@ function TrieTableauParColonne(table, colonne, asc = true){
     }
 
     // On réaffiche toutes les lignes (mais elles seront triés)
-    tableBody.append(...trieRows);
+    // Ajout avec animation
+    trieRows.forEach(row => {
+        row.classList.remove("animated-row"); // reset
+        void row.offsetWidth; // force reflow
+        row.classList.add("animated-row");
+        tableBody.appendChild(row);
+    });
 
     // On va enregistrer comment les colonnes sont déjà triées
     table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc")); // fait en sorte que lorsque on clique sur un autre th, on supprime le th-sort-asc/desc existant, cela en fait donc un a la fois.
