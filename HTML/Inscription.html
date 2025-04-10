@@ -23,28 +23,36 @@
             </nav>
         </header>
 
-        <main id="tableau">
-            <!-- 18 cases (6 lignes x 3 colonnes) -->
-            <div class="cellule">1</div>
-            <div class="cellule">2</div>
-            <div class="cellule">3</div>
-            <div class="cellule">4</div>
-            <div class="cellule">5</div>
-            <div class="cellule">6</div>
-            <div class="cellule">7</div>
-            <div class="cellule">8</div>
-            <div class="cellule">9</div>
-            <div class="cellule">10</div>
-            <div class="cellule">11</div>
-            <div class="cellule">12</div>
-            <div class="cellule">13</div>
-            <div class="cellule">14</div>
-            <div class="cellule">15</div>
-            <div class="cellule">16</div>
-            <div class="cellule">17</div>
-            <div class="cellule">18</div>
-          </main>
+        <main>
+          <div class="container">
+            <div class="tabs">
+              <button id="btn-connexion" class="active">Connexion</button>
+              <button id="btn-inscription">Inscription</button>
+            </div>
         
+            <div id="form-connexion" class="formulaire actif">
+              <h2>Connexion</h2>
+              <form method="POST" action="../PHP/Connexion.php" autocomplete="on">
+                <input type="email" placeholder="Email" id="email_connexion" name="email_connexion" required autocomplete="email">
+                <input type="password" placeholder="Mot de passe" id="motdepasse_connexion" name="motdepasse_connexion" required autocomplete="current-password">
+                <button type="submit">Se connecter</button>
+              </form>
+            </div>
+        
+            <div id="form-inscription" class="formulaire">
+              <h2>Inscription</h2>
+              <form method="POST" action="../PHP/Inscription.php" autocomplete="on">
+                  <input type="text" placeholder="Nom" id="nom" name="nom" required autocomplete="name">
+                  <input type="email" placeholder="Adresse mail" id="adresse_mail" name="email" required autocomplete="email">
+                  <input type="password" placeholder="Mot de passe" id="motdepasse" name="motdepasse" required autocomplete="new-password">
+                  <button type="submit">S'inscrire</button>
+              </form>
+          </div>
+          
+          </div>
+        </main>
+        
+          
 
         <footer class="stylefooter">
             <div class="social">
@@ -60,5 +68,9 @@
             </ul>
             <p class="copyright">© 2025 Booked. Tous droits réservés.</p>
         </footer>
+        
+        <script src="../JAVASCRIPT/Inscription.js"></script>
+        <form method="POST" action="../PHP/Inscription.php">
+
     </body>
 </html>
