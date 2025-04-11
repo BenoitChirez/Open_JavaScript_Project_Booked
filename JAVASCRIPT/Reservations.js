@@ -12,7 +12,7 @@ function TrieTableauParColonne(table, colonne, asc = true){
 
     // Si la colonne est la dernière
     if (colonne === table.rows[0].cells.length - 1) {
-        return; // On ne fait rien et on retourne rien.
+        return; // On ne fait rien
     }
 
     // Focntion de tri
@@ -53,19 +53,31 @@ document.querySelectorAll(".table_reservation th").forEach(headerCell => {
     });
 });
 
+
+
+let rowToDelete = null; // Garde la ligne à supprimer en mémoire
+
 document.querySelectorAll(".table_reservation button").forEach(button => {
     button.addEventListener("click", function () {
-        const ligne = this.closest("tr");
-        const confirmation = confirm("Voulez-vous vraiment supprimer cette réservation ?");
-        
-        if (confirmation) {
-            ligne.classList.add("fade-out");
-
-            // Attendre la fin de l'animation (400 ms) pour supprimer la ligne
-            setTimeout(() => {
-                ligne.remove();
-            }, 400);
-        }
+        rowToDelete = this.closest("tr"); 
+        document.getElementById("confirmationPopup").classList.remove("hidden");
     });
 });
 
+// Pour le bouton d'annulation
+document.getElementById("btnCancel").addEventListener("click", function () {
+    rowToDelete = null;
+    document.getElementById("confirmationPopup").classList.add("hidden");
+});
+
+// Pour le bouton de confirmation
+document.getElementById("btnConfirm").addEventListener("click", function () {
+    if (rowToDelete) {
+        rowToDelete.classList.add("fade-out");
+        setTimeout(() => {
+            rowToDelete.remove();
+            rowToDelete = null;
+        }, 400); // temps pour l'animation fade-out
+    }
+    document.getElementById("confirmationPopup").classList.add("hidden");
+});
