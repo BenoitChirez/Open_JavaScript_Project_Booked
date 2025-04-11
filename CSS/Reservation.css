@@ -1,0 +1,216 @@
+main {
+    min-height: 60vh; /* Pour ne pas avoir un affichage mauvais du footer */
+    display: flex;
+    flex-direction: column;
+}
+
+/*
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////                     Style CSS pour le tableau                     ////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+*/
+
+.table_reservation {
+    border-collapse: collapse;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.table_reservation thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.table_reservation th,
+.table_reservation td {
+    padding: 12px 15px;
+    text-align: center;
+}
+
+.table_reservation tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.table_reservation tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.table_reservation tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.table_reservation tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+button {
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(135deg, #d9534f, #c9302c); /* Rouge avec effet de profondeur */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background: linear-gradient(135deg, #c9302c, #a52a2a); /* Assombrissement au survol */
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+h2 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/*
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////                   Fonctionnalité tri du tableau                   ////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+*/
+
+.table_reservation th{
+    cursor : pointer;
+}
+
+.table_reservation .th-sort-asc::after {
+    content: "\25b4" /* Fait le triangle vers le haut pour montrer que c'est trié dans l'ordre croissant */
+}
+
+.table_reservation .th-sort-desc::after {
+    content: "\25be" /* Fait le triangle vers le bas pour montrer que c'est trié dans l'ordre décroissant */
+}
+
+.table_reservation .th-sort-asc::after, 
+.table_reservation .th-sort-desc::after {
+    margin-left : 5px;
+}
+
+.table_reservation .th-sort-asc, 
+.table_reservation .th-sort-desc {
+    background : rgba(0, 0, 0, 0.1)
+} 
+
+/* //// Animation Fade */
+@keyframes fadeTri {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}
+  
+.animated-row {
+    animation: fadeTri 0.3s ease forwards;
+}
+
+/*
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////                    Supression ligne du tableau                    ////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+*/
+
+/* Animation de disparition */
+@keyframes fadeOutRow {
+    0% {
+        opacity: 1;
+        background: linear-gradient(135deg, #edb5b3, #f19592);
+        transform: scale(1);
+        height: auto;
+    }
+    100% {
+        opacity: 0;
+        background: linear-gradient(135deg, #edb5b3, #f19592);
+        transform: scale(0.95);
+        height: 0;
+    }
+}
+
+.fade-out {
+    animation: fadeOutRow 0.6s ease forwards;
+}
+
+/*
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////                  Div de confirmation suppression                  ////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+*/
+
+/* Overlay */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* Boîte */
+.popup-box {
+    background: white;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    text-align: center;
+    animation: fadeTri 0.3s ease;
+}
+
+.popup-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.popup-box button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
+}
+
+#btnConfirm {
+    background: linear-gradient(135deg, #d9534f, #c9302c);
+    color: white;
+}
+
+#btnCancel {
+    background: #ccc;
+    color: #333;
+}
+
+.hidden {
+    display: none;
+}
