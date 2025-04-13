@@ -25,7 +25,8 @@
         <main>
 
             <!-- Faire une page de reservation dans un tableau -->
-            <h2>Vos réservations</h2>
+            <h2 id="titreReservations">Mes Réservations</h2>
+
             <table class=" table table_reservation">
                 <thead>
                     <tr>
@@ -37,61 +38,27 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Remplissage automatique avec la base de donnée -->
                     <tr>
-                        <td>Le seigneur des anneaux</td>
-                        <td>J.R.R. Tolkien</td>
-                        <td>2025-09-19</td>
-                        <td>2025-10-19</td>
-                        <td><button>X</button></td>
+                        <td>Le seigneur des Anneaux</td>
+                        <td>J. R. R. Tolkien</td>
+                        <td>2025/08/18</td>
+                        <td>2025/09/18</td>
+                        <td><button class="btnAnnuler" onclick="showConfirmationPopup()">X</button></td>
                     </tr>
                     <tr>
-                        <td>Orgueil et préjugés</td>
-                        <td>Jane Austen</td>
-                        <td>2025-05-12</td>
-                        <td>2025-06-12</td> 
-                        <td><button>X</button></td>
+                        <td>Harry potter</td>
+                        <td>J. K. Rowling</td>
+                        <td>2022/01/01</td>
+                        <td>2022/02/01</td>
+                        <td><button class="btnAnnuler" onclick="showConfirmationPopup()">X</button></td>
                     </tr>
                     <tr>
-                        <td>L'Étranger</td>
-                        <td>Albert Camus</td>
-                        <td>2025-04-22</td>
-                        <td>2026-05-22</td>
-                        <td><button>X</button></td>
-                    </tr>
-                    <tr>
-                        <td>L'Odyssée</td>
-                        <td>Homère</td>
-                        <td>2025-05-03</td>
-                        <td>2025-06-03</td>
-                        <td><button>X</button></td>
-                    </tr>
-                    <tr>
-                        <td>La Métamorphose</td>
-                        <td>Gérard Rudent</td>
-                        <td>2025-12-12</td>
-                        <td>2026-01-12</td>
-                        <td><button>X</button></td>
-                    </tr>
-                    <tr>
-                        <td>Harry Potter</td>
-                        <td>J.K. Rowling</td>
-                        <td>2025-09-18</td>
-                        <td>2025-10-18</td> 
-                        <td><button>X</button></td>
-                    </tr>
-                    <tr>
-                        <td>La femme de ménage</td>
-                        <td>Freida McFadden</td>
-                        <td>2026-05-20</td>
-                        <td>2026-06-20</td>
-                        <td><button>X</button></td>
-                    </tr>
-                    <tr>
-                        <td>Le Comte de Monte-Cristo</td>
-                        <td>Alexandre Dumas</td>
-                        <td>2025-04-07</td>
-                        <td>2025-04-07</td>
-                        <td><button>X</button></td>
+                        <td>MAMAMA</td>
+                        <td>ZIZJZA</td>
+                        <td>2030/01/01</td>
+                        <td>2030/02/01</td>
+                        <td><button class="btnAnnuler" onclick="showConfirmationPopup()">X</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -105,6 +72,10 @@
                     </div>
                 </div>
             </div>
+            <div id="noReservationMessage" class="hidden"> <!-- Centrer l'image -->
+                <img src="../images/no-reservation.png" alt="Aucune réservation" style="display: block; margin: 0 auto; width: 100px; height: auto;">
+                <p style="text-align: center; font-size: 18px; margin-top: 20px;">Vous n'avez aucune réservation en cours.</p>
+            </div>            
         </main>
 
         <footer class="stylefooter">

@@ -1,6 +1,7 @@
 main {
     min-height: 60vh; /* Pour ne pas avoir un affichage mauvais du footer */
     display: flex;
+    font-family: 'Poppins', sans-serif;
     flex-direction: column;
 }
 
@@ -13,7 +14,7 @@ main {
 .table_reservation {
     border-collapse: collapse;
     font-size: 0.9em;
-    font-family: sans-serif;
+    font-family:'poppins', sans-serif;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     margin: auto;
@@ -214,3 +215,4 @@ h2 {
 .hidden {
     display: none;
 }
+

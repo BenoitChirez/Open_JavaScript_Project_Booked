@@ -2,82 +2,90 @@
  * Fonction qui permettra de trier une table HTML
  * 
  * @param {HTMLTableElement} table La table à trier
- * @param {Number} colonne L'indice de la colone à trier
- * @param {Boolean} asc Va déterminer si le trie sera dans l'ordre croissant ou décroissant
+ * @param {Number} colonne L'indice de la colonne à trier
+ * @param {Boolean} asc Va déterminer si le tri sera dans l'ordre croissant ou décroissant
  */
-function TrieTableauParColonne(table, colonne, asc = true){
-    const tableBody = table.tBodies[0]; // Séléctionne la partie <tbody></tbody> de notre tableau.
-    const tableRows = Array.from(tableBody.querySelectorAll("tr")); // Séléctionne toutes les lignes du tableau et les mets dans un tableau.
+function TrieTableauParColonne(table, colonne, asc = true) {
+    const tableBody = table.tBodies[0];
+    const tableRows = Array.from(tableBody.querySelectorAll("tr"));
     const dirModif = asc ? 1 : -1;
 
-    // Si la colonne est la dernière
-    if (colonne === table.rows[0].cells.length - 1) {
-        return; // On ne fait rien
-    }
+    if (colonne === table.rows[0].cells.length - 1) return;
 
-    // Focntion de tri
-    const trieRows = tableRows.sort((a,b) => { // sort va trier toutes les lignes en fonction de la valeur des éléments de la colonne choisie. 
-        const colAValue = a.querySelector(`td:nth-child(${colonne + 1})`).textContent.trim(); // Séléctionne les noms d'auteur
-        const colBValue = b.querySelector(`td:nth-child(${colonne + 1})`).textContent.trim(); // idem
-
+    const trieRows = tableRows.sort((a, b) => {
+        const colAValue = a.querySelector(`td:nth-child(${colonne + 1})`).textContent.trim();
+        const colBValue = b.querySelector(`td:nth-child(${colonne + 1})`).textContent.trim();
         return colAValue > colBValue ? (1 * dirModif) : (-1 * dirModif);
     });
 
-    // On supprime toutes les lignes du tableau
-    while (tableBody.firstChild){
+    while (tableBody.firstChild) {
         tableBody.removeChild(tableBody.firstChild);
     }
 
-    // On réaffiche toutes les lignes (mais elles seront triés)
-    // Ajout avec animation
     trieRows.forEach(row => {
-        row.classList.remove("animated-row"); // reset
-        void row.offsetWidth; // force reflow
+        row.classList.remove("animated-row");
+        void row.offsetWidth;
         row.classList.add("animated-row");
         tableBody.appendChild(row);
     });
 
-    // On va enregistrer comment les colonnes sont déjà triées
-    table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc")); // fait en sorte que lorsque on clique sur un autre th, on supprime le th-sort-asc/desc existant, cela en fait donc un a la fois.
+    table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc"));
     table.querySelector(`th:nth-child(${colonne + 1})`).classList.toggle("th-sort-asc", asc);
     table.querySelector(`th:nth-child(${colonne + 1})`).classList.toggle("th-sort-desc", !asc);
 }
 
+// Gestion du tri
 document.querySelectorAll(".table_reservation th").forEach(headerCell => {
-    headerCell.addEventListener("click", () => { // On crée un événemet qui dès lors qu'on clique sur un élément du haut du tableau, le tableau va se trier en fonction de la cellule th la colonne par laquelle on souhaite trier
-        const tableElement = headerCell.parentElement.parentElement.parentElement; // On choisi le tableau. (th => th => thead => table)
-        const headerIndice = Array.prototype.indexOf.call(headerCell.parentElement.children, headerCell); // Donne l'indice de la ligne du haut (Titres) par colone. ()
-        const estAsc = headerCell.classList.contains("th-sort-asc"); // regarder si la classe th-sort-asc est appliqué à th
+    headerCell.addEventListener("click", () => {
+        const tableElement = headerCell.closest("table");
+        const headerIndice = Array.prototype.indexOf.call(headerCell.parentElement.children, headerCell);
+        const estAsc = headerCell.classList.contains("th-sort-asc");
 
-        TrieTableauParColonne(tableElement, headerIndice, !estAsc); // Application de la fonction.
+        TrieTableauParColonne(tableElement, headerIndice, !estAsc);
     });
 });
 
-
-
-let rowToDelete = null; // Garde la ligne à supprimer en mémoire
+let rowToDelete = null;
 
 document.querySelectorAll(".table_reservation button").forEach(button => {
     button.addEventListener("click", function () {
-        rowToDelete = this.closest("tr"); 
+        rowToDelete = this.closest("tr");
         document.getElementById("confirmationPopup").classList.remove("hidden");
     });
 });
 
-// Pour le bouton d'annulation
+// Bouton Annuler
 document.getElementById("btnCancel").addEventListener("click", function () {
     rowToDelete = null;
     document.getElementById("confirmationPopup").classList.add("hidden");
 });
 
-// Pour le bouton de confirmation
+// Bouton Confirmer
 document.getElementById("btnConfirm").addEventListener("click", function () {
     if (rowToDelete) {
         rowToDelete.classList.add("fade-out");
         setTimeout(() => {
             rowToDelete.remove();
             rowToDelete = null;
-        }, 400); // temps pour l'animation fade-out
+            verifierTableVide(); // Vérifie après suppression
+        }, 400);
     }
     document.getElementById("confirmationPopup").classList.add("hidden");
 });
+
+/**
+ * Fonction qui vérifie si le tableau est vide et affiche un message si besoin
+ */
+function verifierTableVide() {
+    const table = document.querySelector(".table_reservation");
+    const tbody = table.querySelector("tbody");
+    const message = document.getElementById("noReservationMessage");
+
+    if (tbody.children.length === 0) {
+        table.style.display = "none";
+        if (message) message.style.display = "block";
+    } else {
+        table.style.display = "table";
+        if (message) message.style.display = "none";
+    }
+}
