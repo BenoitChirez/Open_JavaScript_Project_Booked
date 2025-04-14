@@ -20,7 +20,7 @@
 
         header {
             /*background-color: #6d4c41;*/
-            padding: 10px 0;
+            
             position: fixed;
             width: 100%;
             top: 0;
@@ -78,17 +78,10 @@
             transform: translateY(0);
         }
 
-        footer {
-            background-color: #6d4c41;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 50px;
-
-        }
+        
 
 
-        /* Sparkle container (background layer) */
+       
         .sparkle-container {
             position: fixed;
             top: 0;
@@ -100,7 +93,7 @@
             z-index: -1; /* En arrière-plan */
         }
 
-        /* Individual sparkles */
+        
         .sparkle {
             position: absolute;
             width: 6px;
@@ -175,13 +168,28 @@
         <p class="copyright">© 2025 Booked. Tous droits réservés.</p>
     </footer>
     <script>
-        document.addEventListener("scroll", function () {
+        let hasScrolled = false;
+
+        function showScrollEffects() {
             document.querySelectorAll(".scroll-effect").forEach(el => {
                 if (el.getBoundingClientRect().top < window.innerHeight - 100) {
                     el.classList.add("visible");
                 }
             });
+        }
+
+        document.addEventListener("scroll", function () {
+            hasScrolled = true;
+            
+            showScrollEffects();
         });
+
+        setTimeout(() => {
+            if (!hasScrolled) {
+                showScrollEffects();
+            }
+        }, 5000);
+
         document.addEventListener("DOMContentLoaded", function () {
             const sparkleContainer = document.querySelector(".sparkle-container");
 
