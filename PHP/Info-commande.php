@@ -1,3 +1,37 @@
+<?php
+// Activer l'affichage des erreurs PHP pour la détection des problèmes
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+$servername = "localhost";
+$username = "root";  // Nom d'utilisateur pour MAMP
+$password = "root";  // Mot de passe pour MAMP, vide par défaut
+$dbname = "projet_books";  // Remplace par le nom de ta base de données
+$port = 8889;  // Port MySQL dans MAMP
+
+// Créer la connexion avec le port spécifié
+$conn = new mysqli($servername, $username, $password, $dbname, $port);
+
+// Vérifier la connexion
+if ($conn->connect_error) {
+    die("La connexion a échoué: " . $conn->connect_error);
+}
+
+// Récupération de l'ID dans l'URL
+$id = isset($_GET['id']) ? intval($_GET['id']) : 1;
+
+// Préparation de la requête
+$stmt = $conn->prepare("SELECT * FROM livre WHERE id_livre = ?");
+$stmt->bind_param("i", $id); // "i" = entier
+
+// Exécution
+$stmt->execute();
+
+// Récupération des résultats
+$result = $stmt->get_result();
+$livre = $result->fetch_assoc();
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -23,10 +57,10 @@
         </header>
         
         <main>
-            <h1 id="titre" class="case">Sonic</h1>
-            <div id="couverture" class="case"><img class="cover" src="../images/info-commande/shadow.png" alt="sonic"></div>
-            <div id="auteuretc" class="case">Auteur etc</div>
-            <p id="description" class="case">Description</p>
+            <h1 id="titre" class="case"><?= htmlspecialchars($livre['nom_livre']) ?></h1>
+            <div id="couverture" class="case"><img class="cover" src="<?= htmlspecialchars($livre['chemin_image']) ?>" alt="sonic"></div>
+            <div id="auteuretc" class="case"><?= htmlspecialchars($livre['nom_auteur']) ?></div>
+            <p id="description" class="case"><?= htmlspecialchars($livre['description']) ?></p>
             <div id="emprunt" class="case">Emprunt</div>
             <div id="valider" class="case">Valider</div>
             <div id="restants" class="case">Restants</div>
