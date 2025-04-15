@@ -10,7 +10,6 @@
         <link rel="stylesheet" type="text/css" href="../CSS/Header.css" />
     </head>
     <body>
-
         <header>
             <nav>
                 <ul class="nav-list">
@@ -23,6 +22,7 @@
         </header>
         
         <main>
+
 
             <!-- Faire une page de reservation dans un tableau -->
             <h2 id="titreReservations">Mes Réservations</h2>
@@ -42,8 +42,8 @@
                     <tr>
                         <td>Le seigneur des Anneaux</td>
                         <td>J. R. R. Tolkien</td>
-                        <td>2025/08/18</td>
-                        <td>2025/09/18</td>
+                        <td>2025/03/16</td>
+                        <td>2025/04/16</td>
                         <td><button class="btnAnnuler" onclick="showConfirmationPopup()">X</button></td>
                     </tr>
                     <tr>
@@ -60,6 +60,13 @@
                         <td>2030/02/01</td>
                         <td><button class="btnAnnuler" onclick="showConfirmationPopup()">X</button></td>
                     </tr>
+                    <tr>
+                        <td>Balerina capuccina</td>
+                        <td>MIMIMI</td>
+                        <td>2025/09/01</td>
+                        <td>2025/10/01</td>
+                        <td><button class="btnAnnuler" onclick="showConfirmationPopup()">X</button></td>
+                    </tr>
                 </tbody>
             </table>
             <!-- Boîte de confirmation personnalisée -->
@@ -72,10 +79,16 @@
                     </div>
                 </div>
             </div>
+
             <div id="noReservationMessage" class="hidden"> <!-- Centrer l'image -->
                 <img src="../images/no-reservation.png" alt="Aucune réservation" style="display: block; margin: 0 auto; width: 100px; height: auto;">
                 <p style="text-align: center; font-size: 18px; margin-top: 20px;">Vous n'avez aucune réservation en cours.</p>
-            </div>            
+            </div> 
+            <!--
+            <div id="confirmation_message" class="confirmation_message">
+                Réservation annulée avec succès.
+            </div>
+            -->
         </main>
 
         <footer class="stylefooter">

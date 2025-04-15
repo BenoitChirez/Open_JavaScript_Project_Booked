@@ -30,7 +30,7 @@ main {
 .table_reservation td {
     padding: 12px 15px;
     text-align: center;
-    min-width: 200px;
+    min-width: 175px;
 }
 
 .table_reservation tbody tr {
@@ -214,4 +214,3 @@ h2 {
 .hidden {
     display: none;
 }
-

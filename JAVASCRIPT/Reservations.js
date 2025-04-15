@@ -34,6 +34,7 @@ function TrieTableauParColonne(table, colonne, asc = true) {
     table.querySelector(`th:nth-child(${colonne + 1})`).classList.toggle("th-sort-desc", !asc);
 }
 
+
 // Gestion du tri
 document.querySelectorAll(".table_reservation th").forEach(headerCell => {
     headerCell.addEventListener("click", () => {
@@ -89,3 +90,37 @@ function verifierTableVide() {
         if (message) message.style.display = "none";
     }
 }
+
+window.addEventListener("DOMContentLoaded", () => {
+    verifierTableVide();
+});
+
+
+// Permet de mettre en couleur en fonction de la date de fin
+// Rouge : date passée
+// Orange : date dans 3 jours ou moins
+document.addEventListener("DOMContentLoaded", function () {
+    const rows = document.querySelectorAll(".table_reservation tbody tr");
+
+    rows.forEach(row => {
+        const endDateStr = row.cells[3].textContent.trim(); // colonne "Date de fin"
+        const endDate = new Date(endDateStr); // format aaaa/mm/jj
+        const today = new Date();
+
+        // Réinitialiser l'heure pour une comparaison juste
+        today.setHours(0, 0, 0, 0);
+        endDate.setHours(0, 0, 0, 0);
+
+        const diffTime = endDate - today;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        if (diffDays < 0) {
+            row.style.backgroundColor = "#ffcccc"; // rouge : déjà expiré
+        } else if (diffDays <= 3) {
+            row.style.backgroundColor = "#ffe5b4"; // orange : 3 jours ou moins restants
+        } 
+        /*else {
+            row.style.backgroundColor = "#ccffcc"; // vert : plus de 3 jours
+        }*/
+    });
+});
