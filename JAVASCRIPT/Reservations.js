@@ -46,8 +46,6 @@ function showToast(message = "Réservation annulée avec succès") {
     }, 3000); // 3 secondes
 }
 
-
-
 // Gestion du tri
 document.querySelectorAll(".table_reservation th").forEach(headerCell => {
     headerCell.addEventListener("click", () => {
