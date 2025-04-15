@@ -214,3 +214,44 @@ h2 {
 .hidden {
     display: none;
 }
+
+
+/* Style du message Toast */
+.confirmation_message {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1000;
+    font-family: Arial, sans-serif;
+    animation: fadeinmessage 0.5s, fadeoutmessage 0.5s 2.5s;
+}
+
+/* Animation de l'apparition du toast */
+@keyframes fadeinmessage {
+    from {
+        opacity: 0;
+        bottom: 20px;
+    }
+    to {
+        opacity: 1;
+        bottom: 30px;
+    }
+}
+
+/* Animation de la disparition du toast */
+@keyframes fadeoutmessage {
+    from {
+        opacity: 1;
+        bottom: 30px;
+    }
+    to {
+        opacity: 0;
+        bottom: 20px;
+    }
+}

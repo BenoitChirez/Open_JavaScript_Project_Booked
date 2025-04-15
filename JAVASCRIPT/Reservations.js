@@ -35,6 +35,19 @@ function TrieTableauParColonne(table, colonne, asc = true) {
 }
 
 
+
+function showToast(message = "Réservation annulée avec succès") {
+    const toast = document.getElementById("confirmation_message");
+    toast.textContent = message;
+    toast.style.display = "block";
+
+    setTimeout(() => {
+        toast.style.display = "none";
+    }, 3000); // 3 secondes
+}
+
+
+
 // Gestion du tri
 document.querySelectorAll(".table_reservation th").forEach(headerCell => {
     headerCell.addEventListener("click", () => {
@@ -67,6 +80,7 @@ document.getElementById("btnConfirm").addEventListener("click", function () {
         rowToDelete.classList.add("fade-out");
         setTimeout(() => {
             rowToDelete.remove();
+            showToast();
             rowToDelete = null;
             verifierTableVide(); // Vérifie après suppression
         }, 400);
