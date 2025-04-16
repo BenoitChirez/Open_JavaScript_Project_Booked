@@ -5,76 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> About us </title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../CSS/Acceuil.css" />
+    <link rel="stylesheet" type="text/css" href="../CSS/aboutus.css" />
     <link rel="stylesheet" type="text/css" href="../CSS/Footer.css" />
     <link rel="stylesheet" type="text/css" href="../CSS/Header.css" />
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f5e6d7;
-            color: #4e342e;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        header {
-            /*background-color: #6d4c41;*/
-
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: background 0.3s;
-        }
-
-        .nav-list {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            list-style: none;
-            padding: 0;
-        }
-
-            .nav-list li a {
-                color: white;
-                text-decoration: none;
-                font-weight: 600;
-            }
-        main {
-            padding-top: 80px;
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        footer {
-            background-color: #6d4c41;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 50px;
-        }
-        p {
-            font-size: 20px;
-        }
-        .info-box {
-            width: 80%;
-            margin-left:10%;
-            height: 500px;
-            background: #d7b899;
-            border-radius: 17%;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            justify-content: center;
-            font-size: 14px;
-            text-align: center;
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease-in-out;
-        }
-        .info-box:hover {
-                transform: scale(1.05);
-        }
-    </style>
+    
 </head>
 <body>
 
