@@ -55,15 +55,17 @@ $livre = $result->fetch_assoc();
                 </ul>
             </nav>
         </header>
+
+        <div id="exemplairesRestants"><?=$livre['nbr_restant']?></div>
         
         <main>
             <h1 id="titre" class="case"><?= htmlspecialchars($livre['nom_livre']) ?></h1>
             <div id="couverture" class="case"><img class="cover" src="<?= htmlspecialchars($livre['chemin_image']) ?>" alt="sonic"></div>
             <div id="auteuretc" class="case"><?= htmlspecialchars($livre['nom_auteur']) ?></div>
             <p id="description" class="case"><?= htmlspecialchars($livre['description']) ?></p>
-            <div id="emprunt" class="case">Emprunt</div>
+            <div id="emprunt" class="case">Location pour 1 mois<br>A rendre le : </div>
             <div id="valider" class="case">Valider</div>
-            <div id="restants" class="case">Restants</div>
+            <div id="restants" class="case">Restants : <?= htmlspecialchars($livre['nbr_restant']) ?>/<?= htmlspecialchars($livre['nbr_exemplaire']) ?></div>
         </main>
 
         <footer class="stylefooter">
@@ -80,5 +82,7 @@ $livre = $result->fetch_assoc();
             </ul>
             <p class="copyright">© 2025 Booked. Tous droits réservés.</p>
         </footer>
+
+        <script src="../JAVASCRIPT/Info-commande.js"></script>
     </body>
 </html>
