@@ -52,9 +52,9 @@ $livre = $result->fetch_assoc();
             <div id="couverture" class="case"><img class="cover" src="<?= htmlspecialchars($livre['chemin_image']) ?>" alt="sonic"></div>
             <div id="auteuretc" class="case"><?= htmlspecialchars($livre['nom_auteur']) ?></div>
             <p id="description" class="case"><?= htmlspecialchars($livre['description']) ?></p>
-            <div id="emprunt" class="case">Emprunt</div>
+            <div id="emprunt" class="case">Location pour 1 mois<br>A rendre le : </div>
             <div id="valider" class="case">Valider</div>
-            <div id="restants" class="case">Restants</div>
+            <div id="restants" class="case">Restants : <?= htmlspecialchars($livre['nbr_restant']) ?>/<?= htmlspecialchars($livre['nbr_exemplaire']) ?></div>
         </main>
 
         <?php include 'footer.php'; ?>
