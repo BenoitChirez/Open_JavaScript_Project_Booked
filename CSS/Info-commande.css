@@ -50,6 +50,13 @@ main {
     grid-column: 2 / 3;
     grid-row: 3 / 4;
     margin: 2vh 18vw;
+    align-content: center;
+    justify-content: center;
+}
+
+#bouton {
+    font-size: 2vw;
+    padding: 2vw;
     border: 1px solid #f5e6d7;
     background-color: #f5e6d7;
     color: #4e342e;
@@ -58,7 +65,11 @@ main {
     box-shadow: .5vh .5vh rgba(0, 0, 0, 0.3);
 }
 
-#valider:active {
+#bouton:hover {
+    cursor: pointer;
+}
+
+#bouton:active {
     transform: translateY(2px);
     box-shadow: inset .5vh .5vh rgba(0, 0, 0, 0.3);
 }
