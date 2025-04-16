@@ -47,6 +47,8 @@ $livre = $result->fetch_assoc();
     <body>
 
         <?php include 'header.php'; ?>
+
+        <div id="exemplairesRestants"><?= htmlspecialchars($livre['nbr_restant']); ?></div>
         
         <main>
             <h1 id="titre" class="case"><?= htmlspecialchars($livre['nom_livre']) ?></h1>
@@ -63,7 +65,6 @@ $livre = $result->fetch_assoc();
             <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['validerReservation'])) {
                 // Tu peux récupérer l'id de l'utilisateur ici depuis la session
-                session_start();
                 $id_utilisateur = $_SESSION['id_utilisateur']; // Assure-toi que l'utilisateur est bien connecté
             
                 $id_livre_reserve = $livre['id_livre'];
@@ -74,7 +75,10 @@ $livre = $result->fetch_assoc();
                 $insert->bind_param("iiss", $id_livre_reserve, $id_utilisateur, $j_debut, $j_fin);
             
                 if ($insert->execute()) {
-                    echo "<script>alert('Réservation confirmée !');</script>";
+                    $majNbrExemplaire = $conn->prepare("UPDATE livre SET nbr_restant = nbr_restant - 1 WHERE id_livre = ?");
+                    $majNbrExemplaire->bind_param("i", $id);
+                    $majNbrExemplaire->execute();
+                    header("Location: ../PHP/Bibliotheque.php");
                 } else {
                     echo "<script>alert('Erreur lors de la réservation.');</script>";
                 }
