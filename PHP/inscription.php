@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Exécuter la requête
         if ($stmt->execute()) {
             // Si l'inscription a réussi, rediriger vers la page du profil
-            header("Location: ../HTML/Votre-profil.html");  // Page de succès
+            header("Location: ../HTML/Votre-profil.php");  // Page de succès
             exit;  // Toujours appeler exit après une redirection
         } else {
             // Si l'insertion échoue, afficher un message d'erreur
