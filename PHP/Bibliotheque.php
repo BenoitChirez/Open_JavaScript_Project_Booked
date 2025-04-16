@@ -12,16 +12,7 @@
 </head>
 <body>
 
-    <header>
-        <nav>
-            <ul class="nav-list">
-                <div class="header1"><li><a href="aboutus.html">About us</a></li></div>
-                <div class="header2"><li><a href="Reservations.html">Vos réservations</a></li></div>
-                <div class="header3"><li><a href="Bibliotheque.html">Bibliothèque</a></li></div>
-                <div class="header4"><li><a href="Votre-profil.html">Votre profil</a></li></div>
-            </ul>
-        </nav>
-    </header>
+    <?php include 'header.php'; ?>
 
     <main>
         <section class="search-section">
@@ -135,9 +126,7 @@
         </section>
     </main>
 
-    <footer class="stylefooter">
-        <p class="copyright">© 2025 Booked. Tous droits réservés.</p>
-    </footer>
+    <?php include 'footer.php'; ?>
 
     <script>
         function searchBooks() {
