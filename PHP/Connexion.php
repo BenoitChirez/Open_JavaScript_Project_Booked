@@ -35,8 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Vérification du mot de passe
             if (password_verify($motdepasse, $motdepasse_hash)) {
-                // Connexion réussie
-                header("Location: ../HTML/Votre-profil.html");
+                session_start(); // Au cas où ce n'était pas fait en haut
+                $_SESSION['email'] = $email;
+                $_SESSION['id_utilisateur'] = $id_utilisateur;
+                header("Location: ../HTML/Votre-profil.php");
                 exit;
             } else {
                 echo "Mot de passe incorrect.";
