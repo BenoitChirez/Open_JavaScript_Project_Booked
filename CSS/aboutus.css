@@ -65,9 +65,7 @@ p {
     transition: transform 0.3s ease-in-out;
 }
 
-    .info-box:hover {
-        transform: scale(1.05);
-    }
+    
 
 .scroll-effect {
     opacity: 0;
