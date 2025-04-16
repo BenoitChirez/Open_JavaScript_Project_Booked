@@ -3,7 +3,7 @@ main {
     display: grid;
     gap: 2vh;
     grid-template-columns: 2fr 5fr 2fr;
-    grid-template-rows: 1fr 4fr 1fr;
+    grid-template-rows: 1fr auto 1fr;
 }
 
 .case {
@@ -16,7 +16,7 @@ main {
 #titre {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
-    font-size: 7vh;
+    font-size: 3vw;
 }
 
 #couverture {
@@ -27,6 +27,7 @@ main {
 #auteuretc {
     grid-column: 3 / 4;
     grid-row: 1 / 2;
+    font-size: 1vw;
 }
 
 #description {

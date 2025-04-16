@@ -27,8 +27,8 @@ valider.addEventListener("mouseenter", function() {
 if (exemplairesRestants.innerHTML == 0) { // si il n'y a plus d'exemplaires disponibles
     emprunt.style.display = "none";
     restants.style.display = "none";
+    valider.style.fontSize = "1.5vw";
+    valider.style.margin = "0";
+    valider.style.textAlign = "center";
     valider.innerHTML = "Aucun exemplaire disponible";
-    valider.onclick = function() {
-        alert("Aucun exemplaire disponible");
-    }
 }
