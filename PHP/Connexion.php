@@ -2,6 +2,7 @@
 // Affichage des erreurs pour debug
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+session_start();
 
 // Vérifier si le formulaire est soumis
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -12,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Connexion à la base de données
         $servername = "localhost";
         $username = "root";
-        $password = "root";  // Mot de passe MAMP
+        $password = "root";
         $dbname = "projet_books";
         $port = 8889;
 
@@ -23,22 +24,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         // Rechercher l'utilisateur par email
-        $stmt = $conn->prepare("SELECT mot_de_passe FROM utilisateur WHERE adresse_mail = ?");
+        $stmt = $conn->prepare("SELECT id_utilisateur, nom, mot_de_passe FROM utilisateur WHERE adresse_mail = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
-        $stmt->store_result();
+        $result = $stmt->get_result();
 
-        // Vérifie s'il existe un utilisateur
-        if ($stmt->num_rows == 1) {
-            $stmt->bind_result($motdepasse_hash);
-            $stmt->fetch();
+        if ($result->num_rows == 1) {
+            $utilisateur = $result->fetch_assoc();
 
             // Vérification du mot de passe
-            if (password_verify($motdepasse, $motdepasse_hash)) {
-                session_start(); // Au cas où ce n'était pas fait en haut
-                $_SESSION['email'] = $email;
-                $_SESSION['id_utilisateur'] = $id_utilisateur;
-                header("Location: ../HTML/Votre-profil.php");
+            if (password_verify($motdepasse, $utilisateur['mot_de_passe'])) {
+                $_SESSION['id_utilisateur'] = $utilisateur['id_utilisateur'];
+                $_SESSION['nom'] = $utilisateur['nom'];
+
+                header("Location: ../PHP/Votre-profil.php");
                 exit;
             } else {
                 echo "Mot de passe incorrect.";
