@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Activer l'affichage des erreurs PHP pour la détection des problèmes
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
