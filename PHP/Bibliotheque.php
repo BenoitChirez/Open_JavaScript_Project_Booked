@@ -1,3 +1,24 @@
+<?php
+session_start();
+// Activer l'affichage des erreurs PHP pour la détection des problèmes
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+$servername = "localhost";
+$username = "root";  // Nom d'utilisateur pour MAMP
+$password = "root";  // Mot de passe pour MAMP, vide par défaut
+$dbname = "projet_books";  // Remplace par le nom de ta base de données
+$port = 8889;  // Port MySQL dans MAMP
+
+// Créer la connexion avec le port spécifié
+$conn = new mysqli($servername, $username, $password, $dbname, $port);
+
+// Vérifier la connexion
+if ($conn->connect_error) {
+    die("La connexion a échoué: " . $conn->connect_error);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -20,6 +41,24 @@
         </section>
 
         <section class="library">
+            <?php
+            $result = $conn->query("SELECT COUNT(*) AS total FROM livre");
+            $row = $result->fetch_assoc();
+            $count = $row['total']; // ← c'est ici qu'on récupère la valeur
+            
+            for ($i = 1; $i <= $count; $i++) {
+                $query = "SELECT * FROM livre WHERE id_livre = $i";
+                $livre = $conn->query($query);
+                $livre = $livre->fetch_assoc();
+                echo '<div class="book" data-title="' . htmlspecialchars($livre['nom_livre']) . '">';
+                echo '<img src="' . htmlspecialchars($livre['chemin_image']) . '" alt="' . htmlspecialchars($livre['nom_livre']) . '">';
+                echo '<h3>' . htmlspecialchars($livre['nom_livre']) . '</h3>';
+                echo '<p>Auteur: ' . htmlspecialchars($livre['nom_auteur']) . '</p>';
+                echo '<a class="lien" href="../PHP/Info-commande.php?id=' . ($i) . '">Voir plus</a>';
+                echo '</div>';
+            }
+            ?>
+        <!--
             <div class="book" data-title="Le Comte de Monte-Cristo">
                 <img src="../images/livres/monte-cristo.jpg" alt="Le Comte de Monte-Cristo">
                 <h3>Le Comte de Monte-Cristo</h3>
@@ -123,6 +162,7 @@
                 <p class="description">Une histoire poétique sur l’amitié et l’imagination.</p>
                 <a href="../PHP/Info-commande.php?id=13">Voir plus</a>
             </div>
+        -->
         </section>
     </main>
 
