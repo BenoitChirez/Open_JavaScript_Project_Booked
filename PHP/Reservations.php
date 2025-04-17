@@ -70,7 +70,7 @@ $result = $stmt->get_result();
                         <td><?= htmlspecialchars($row['nom_auteur']) ?></td>
                         <td><?= htmlspecialchars($row['j_debut']) ?></td>
                         <td><?= htmlspecialchars($row['j_fin']) ?></td>
-                        <td><button class="btnAnnuler" onclick="showConfirmationPopup(<?= $row['idreserve'] ?>)">X</button></td>
+                        <td><button class="btnAnnuler" data-id="<?= $row['idreserve']; ?>">X</button></td>
                     </tr>
                 <?php endwhile; ?>
             <?php endif; ?>

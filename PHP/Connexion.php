@@ -36,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (password_verify($motdepasse, $utilisateur['mot_de_passe'])) {
                 $_SESSION['id_utilisateur'] = $utilisateur['id_utilisateur'];
                 $_SESSION['nom'] = $utilisateur['nom'];
+                $_SESSION['email'] = $email;
 
                 header("Location: ../PHP/Votre-profil.php");
                 exit;

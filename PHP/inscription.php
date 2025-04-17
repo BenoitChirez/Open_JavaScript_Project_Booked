@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Démarrer la session et stocker les infos
             $_SESSION['id_utilisateur'] = $id_utilisateur;
             $_SESSION['nom'] = $nom;
+            $_SESSION['email'] = $email;
 
             // Si l'inscription a réussi, rediriger vers la page du profil
             header("Location: ../PHP/Votre-profil.php");  // Page de succès
