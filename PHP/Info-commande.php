@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Activer l'affichage des erreurs PHP pour la détection des problèmes
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -46,17 +47,49 @@ $livre = $result->fetch_assoc();
     <body>
 
         <?php include 'header.php'; ?>
+
+        <div id="exemplairesRestants"><?= htmlspecialchars($livre['nbr_restant']); ?></div>
         
         <main>
             <h1 id="titre" class="case"><?= htmlspecialchars($livre['nom_livre']) ?></h1>
             <div id="couverture" class="case"><img class="cover" src="<?= htmlspecialchars($livre['chemin_image']) ?>" alt="sonic"></div>
             <div id="auteuretc" class="case"><?= htmlspecialchars($livre['nom_auteur']) ?></div>
             <p id="description" class="case"><?= htmlspecialchars($livre['description']) ?></p>
-            <div id="emprunt" class="case">Location pour 1 mois<br>A rendre le : </div>
-            <div id="valider" class="case">Valider</div>
+            <div id="emprunt" class="case">Location pour 1 mois<br>A rendre le :</div>
+            <form id="valider" method="POST">
+                <input type="hidden" name="validerReservation" value="1">
+                <button type="submit" id="bouton" class="case">Valider</button>
+            </form>
             <div id="restants" class="case">Restants : <?= htmlspecialchars($livre['nbr_restant']) ?>/<?= htmlspecialchars($livre['nbr_exemplaire']) ?></div>
+            
+            <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['validerReservation'])) {
+                // Tu peux récupérer l'id de l'utilisateur ici depuis la session
+                $id_utilisateur = $_SESSION['id_utilisateur']; // Assure-toi que l'utilisateur est bien connecté
+            
+                $id_livre_reserve = $livre['id_livre'];
+                $j_debut = date("Y-m-d");
+                $j_fin = date("Y-m-d", strtotime("+1 month"));
+            
+                $insert = $conn->prepare("INSERT INTO reserve (id_livre, id_utilisateur, j_debut, j_fin) VALUES (?, ?, ?, ?)");
+                $insert->bind_param("iiss", $id_livre_reserve, $id_utilisateur, $j_debut, $j_fin);
+            
+                if ($insert->execute()) {
+                    $majNbrExemplaire = $conn->prepare("UPDATE livre SET nbr_restant = nbr_restant - 1 WHERE id_livre = ?");
+                    $majNbrExemplaire->bind_param("i", $id);
+                    $majNbrExemplaire->execute();
+                    header("Location: ../PHP/Bibliotheque.php");
+                } else {
+                    echo "<script>alert('Erreur lors de la réservation.');</script>";
+                }
+            
+                $insert->close();
+            }
+            ?>
         </main>
-
+        
         <?php include 'footer.php'; ?>
+
+        <script src="../JAVASCRIPT/Info-commande.js"></script>
     </body>
 </html>
