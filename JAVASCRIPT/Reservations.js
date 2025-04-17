@@ -34,8 +34,6 @@ function TrieTableauParColonne(table, colonne, asc = true) {
     table.querySelector(`th:nth-child(${colonne + 1})`).classList.toggle("th-sort-desc", !asc);
 }
 
-
-
 function showToast(message = "Réservation annulée avec succès") {
     const toast = document.getElementById("confirmation_message");
     toast.textContent = message;
@@ -57,34 +55,47 @@ document.querySelectorAll(".table_reservation th").forEach(headerCell => {
     });
 });
 
-let rowToDelete = null;
+document.addEventListener("DOMContentLoaded", function () {
+    const btnAnnuler = document.querySelectorAll(".btnAnnuler");
+    const confirmationPopup = document.getElementById("confirmationPopup");
+    const btnConfirm = document.getElementById("btnConfirm");
+    const btnCancel = document.getElementById("btnCancel");
+    let reservationIdToDelete = null;
 
-document.querySelectorAll(".table_reservation button").forEach(button => {
-    button.addEventListener("click", function () {
-        rowToDelete = this.closest("tr");
-        document.getElementById("confirmationPopup").classList.remove("hidden");
+    // Ouvrir la popup et stocker l'ID de la réservation
+    btnAnnuler.forEach(function (button) {
+        button.addEventListener("click", function () {
+            // Récupérer l'ID de la réservation associée au bouton
+            reservationIdToDelete = button.getAttribute("data-id");
+
+            // Ajouter la classe avec l'ID au bouton de confirmation
+            btnConfirm.classList.add("confirm-" + reservationIdToDelete);
+
+            // Afficher la popup
+            confirmationPopup.classList.remove("hidden");
+        });
+    });
+
+    // Annuler l'annulation
+    btnCancel.addEventListener("click", function () {
+        confirmationPopup.classList.add("hidden");
+    });
+
+    // Confirmer l'annulation et effectuer l'action (par exemple, supprimer la réservation)
+    btnConfirm.addEventListener("click", function () {
+        if (reservationIdToDelete) {
+            // Exemple simple de suppression via redirection :
+            window.location.href = "suppression_reservation.php?id=" + reservationIdToDelete;
+
+            // Cacher la popup
+            confirmationPopup.classList.add("hidden");
+
+            // Afficher un message de confirmation
+            document.getElementById("confirmation_message").classList.remove("hidden");
+        }
     });
 });
 
-// Bouton Annuler
-document.getElementById("btnCancel").addEventListener("click", function () {
-    rowToDelete = null;
-    document.getElementById("confirmationPopup").classList.add("hidden");
-});
-
-// Bouton Confirmer
-document.getElementById("btnConfirm").addEventListener("click", function () {
-    if (rowToDelete) {
-        rowToDelete.classList.add("fade-out");
-        setTimeout(() => {
-            rowToDelete.remove();
-            showToast();
-            rowToDelete = null;
-            verifierTableVide(); // Vérifie après suppression
-        }, 400);
-    }
-    document.getElementById("confirmationPopup").classList.add("hidden");
-});
 
 /**
  * Fonction qui vérifie si le tableau est vide et affiche un message si besoin
@@ -106,7 +117,6 @@ function verifierTableVide() {
 window.addEventListener("DOMContentLoaded", () => {
     verifierTableVide();
 });
-
 
 // Permet de mettre en couleur en fonction de la date de fin
 // Rouge : date passée
@@ -133,6 +143,6 @@ document.addEventListener("DOMContentLoaded", function () {
         } 
         /*else {
             row.style.backgroundColor = "#ccffcc"; // vert : plus de 3 jours
-        }*/
+        } */
     });
 });
