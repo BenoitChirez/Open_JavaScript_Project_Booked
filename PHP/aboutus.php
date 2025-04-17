@@ -20,16 +20,11 @@
         </div>
         <div class="info-box" style="display: flex; flex-direction: column; align-items: center; gap: 20px; margin-top: 50px;">
             <div class="photo-row" style="display: flex; justify-content: center; gap: 15px;">
-                <img src="../images/image_adam.jpg" alt="1" style="width: 100px; height: 100px; border-radius: 50%;" 
-                data-info="">
-                <img src="../images/image_benoit.png" alt="2" style="width: 100px; height: 100px; border-radius: 50%;" 
-                data-info="">
-                <img src="../images/image_max.jpg" alt="3" style="width: 100px; height: 100px; border-radius: 50%;" 
-                data-info="">
-                <img src="../images/image_sam.jpg" alt="4" style="width: 100px; height: 100px; border-radius: 50%;" 
-                data-info="">
-                <img src="../images/image_shalom.png" alt="5" style="width: 100px; height: 100px; border-radius: 50%;" 
-                data-info="clamerenoir">
+                <img src="../images/image_adam.jpg" alt="1" style="width: 100px; height: 100px; border-radius: 50%;">
+                <img src="../images/image_benoit.png" alt="2" style="width: 100px; height: 100px; border-radius: 50%;">
+                <img src="../images/image_max.jpg" alt="3" style="width: 100px; height: 100px; border-radius: 50%;">
+                <img src="../images/image_sam.jpg" alt="4" style="width: 100px; height: 100px; border-radius: 50%;">
+                <img src="../images/image_shalom.png" alt="5" style="width: 100px; height: 100px; border-radius: 50%;">
             </div>
 
             <div style="max-width: 800px; text-align: center; font-size: 18px;">
