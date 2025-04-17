@@ -1,4 +1,7 @@
 /* 1. Mise en page du main */
+body{
+  background-color: #f5e6d7;
+}
 main {
   min-height: 78vh;
   display: flex;
@@ -24,7 +27,7 @@ main#tableau {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #4e342e;
+  background-color: #885f55;
 }
 
 /* 4. Cellule centrale (n°5) */
@@ -32,7 +35,7 @@ main#tableau {
   display: flex;
   justify-content: center; /* Centrer horizontalement */
   align-items: center;     /* Centrer verticalement */
-  background-color: #4e342e;
+  background-color: #d7b899;
   padding: 20px;
   width: 100%;
   height: 100%;            /* Remplir toute la hauteur de la cellule centrale */
@@ -40,8 +43,8 @@ main#tableau {
 
 /* 5. Conteneur du formulaire */
 .container {
-  background-color: #6d4c41;
-  border: 3px solid #ccc;
+  background-color: #d7b899;
+  border: 3px solid #9e613e;
   border-radius: 15px;
   padding: 30px;
   width: 100%;
@@ -80,7 +83,7 @@ main#tableau {
   padding: 10px;
   font-size: 1rem;
   background-color: #6d4c41;
-  color: white;
+  color: rgb(255, 255, 255);
   border: none;
   cursor: pointer;
   border-radius: 10px;
@@ -88,12 +91,13 @@ main#tableau {
 }
 
 .container button:hover {
-  background-color: #4e342e;
+  background-color: #ae6f49;
 }
 
 /* 10. Onglets Connexion / Inscription */
 .tabs {
   display: flex;
+
   justify-content: space-between;
   margin-bottom: 20px;
   width: 100%;
@@ -104,7 +108,7 @@ main#tableau {
   padding: 10px;
   cursor: pointer;
   border: none;
-  background-color: #e0e0e0;
+  background-color: #daae81;
   font-weight: bold;
   transition: background 0.3s;
 }
