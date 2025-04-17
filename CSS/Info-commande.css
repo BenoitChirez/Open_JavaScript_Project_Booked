@@ -1,0 +1,136 @@
+main {
+    padding: 5vh 5vw;
+    display: grid;
+    gap: 2vh;
+    grid-template-columns: 2fr 5fr 2fr;
+    grid-template-rows: 1fr auto 1fr;
+}
+
+.case {
+    display: flex;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+#titre {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    font-size: 3vw;
+}
+
+#couverture {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+}
+
+#auteuretc {
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+    font-size: 1vw;
+}
+
+#description {
+    background-color: #f5e6d7;
+    color: #4e342e;
+    border-radius: 2vh;
+    box-shadow: .5vh .5vh 0 0 rgba(0, 0, 0, 0.3);
+    padding: 3vw;
+    font-size: 1.4vw;
+    grid-column: 2 / 4;
+    grid-row: 2 / 3;
+    margin: 0;
+}
+
+#emprunt {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+}
+
+#valider {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+    margin: 2vh 18vw;
+    align-content: center;
+    justify-content: center;
+}
+
+#bouton {
+    font-size: 2vw;
+    padding: 2vw;
+    border: 1px solid #f5e6d7;
+    background-color: #f5e6d7;
+    color: #4e342e;
+    border-radius: 1vw;
+    transition: all 0.1s ease;
+    box-shadow: .5vh .5vh rgba(0, 0, 0, 0.3);
+}
+
+#bouton:hover {
+    cursor: pointer;
+}
+
+#bouton:active {
+    transform: translateY(2px);
+    box-shadow: inset .5vh .5vh rgba(0, 0, 0, 0.3);
+}
+
+#restants {
+    grid-column: 3 / 4;
+    grid-row: 3 / 4;
+}
+
+#exemplairesRestants {
+    display: none;
+}
+
+.cover {
+    width: 18vw;
+    border-radius: 2vh;
+    box-shadow: .5vh .5vh 0 0 rgba(0, 0, 0, 0.3);
+}
+
+/* responsive */
+
+@media (max-width: 800px) {
+    main {
+        gap: 1vh;
+        grid-template-columns: 1fr;
+        grid-template-rows: 2fr 7fr 1fr 5fr 2fr 2fr 2fr;
+    }
+
+    #titre {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+
+    #couverture{
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+
+    #auteuretc {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+    }
+
+    #description {
+        grid-column: 1 / 2;
+        grid-row: 4 / 5;
+    }
+
+    #emprunt {
+        grid-column: 1 / 2;
+        grid-row: 5 / 6;
+    }
+
+    #restants {
+        grid-column: 1 / 2;
+        grid-row: 6 / 7;
+    }
+
+    #valider {
+        grid-column: 1 / 2;
+        grid-row: 7 / 8;
+    }
+}
