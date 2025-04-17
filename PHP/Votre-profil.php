@@ -52,7 +52,7 @@ if ($conn->connect_error) {
           background-color: #d7b899;
           color: #4e342e;
           padding: 30px;
-          border-radius: 30%;
+          border-radius: 25px;
           box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
           width: 300px;
           text-align: center;
