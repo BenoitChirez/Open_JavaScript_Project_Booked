@@ -6,10 +6,10 @@ window.addEventListener("DOMContentLoaded", () => {
     
     const descriptions = {
         "1": "Adam, sosie officiel de Tchoupi.",
-        "2": "Benoit , la (im)patience incarn�.",
+        "2": "Benoit , la (im)patience incarnée.",
         "3": "Maxence: SUPER MEGA STYLE.",
         "4": "Samuel, Trafficant de petits LU.",
-        "5": "Shalom, ."
+        "5": "Shalom, Défenseur au réal Madrid."
     };
 
     images.forEach((img) => {
