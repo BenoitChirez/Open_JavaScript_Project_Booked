@@ -1,7 +1,6 @@
 /* 1. Mise en page du main */
-
 main {
-  min-height:78vh ;
+  min-height: 78vh;
   display: flex;
   flex-direction: column;
   justify-content: center; /* Centrage vertical */
@@ -18,7 +17,6 @@ main#tableau {
   max-width: 100%;
   height: 100vh;            /* Hauteur 100% de la fenêtre */
   box-sizing: border-box;
-
 }
 
 /* 3. Centrage des cellules */
@@ -27,7 +25,6 @@ main#tableau {
   justify-content: center;
   align-items: center;
   background-color: #4e342e;
-
 }
 
 /* 4. Cellule centrale (n°5) */
@@ -35,16 +32,15 @@ main#tableau {
   display: flex;
   justify-content: center; /* Centrer horizontalement */
   align-items: center;     /* Centrer verticalement */
-  background-color:#4e342e;
+  background-color: #4e342e;
   padding: 20px;
   width: 100%;
   height: 100%;            /* Remplir toute la hauteur de la cellule centrale */
-
 }
 
 /* 5. Conteneur du formulaire */
 .container {
-  background-color: white;
+  background-color: #6d4c41;
   border: 3px solid #ccc;
   border-radius: 15px;
   padding: 30px;
@@ -60,6 +56,7 @@ main#tableau {
 /* 6. Titre */
 .container h2 {
   margin-bottom: 20px;
+  color: white;
 }
 
 /* 7. Formulaire */
@@ -82,7 +79,7 @@ main#tableau {
 .container button {
   padding: 10px;
   font-size: 1rem;
-  background-color:#895d53;
+  background-color: #6d4c41;
   color: white;
   border: none;
   cursor: pointer;
@@ -113,7 +110,7 @@ main#tableau {
 }
 
 .tabs button.active {
-  background-color: #007bff;
+  background-color: #6d4c41;
   color: white;
 }
 
