@@ -8,40 +8,49 @@
  * Fonction qui permettra de trier une table HTML
  * 
  * @param {HTMLTableElement} table La table à trier
- * @param {Number} colonne L'indice de la colone à trier
- * @param {Boolean} asc Va déterminer si le trie sera dans l'ordre croissant ou décroissant
+ * @param {Number} colonne L'indice de la colonne à trier
+ * @param {Boolean} asc Va déterminer si le tri sera dans l'ordre croissant ou décroissant
  */
-function TrieTableauParColonne(table, colonne, asc = true){
+function TrieTableauParColonne(table, colonne, asc = true) {
     const tableBody = table.tBodies[0]; // Séléctionne la partie <tbody></tbody> de notre tableau.
     const tableRows = Array.from(tableBody.querySelectorAll("tr")); // Séléctionne toutes les lignes du tableau et les mets dans un tableau.
     const dirModif = asc ? 1 : -1;
-    
-    // Si la colonne est la dernière
-    if (colonne === table.rows[0].cells.length - 1) {
-        return; // On ne fait rien et on retourne rien.
-    }
 
-    // Focntion de tri
-    const trieRows = tableRows.sort((a,b) => { // sort va trier toutes les lignes en fonction de la valeur des éléments de la colonne choisie. 
-        const colAValue = a.querySelector(`td:nth-child(${colonne + 1})`).textContent.trim(); // Séléctionne les noms d'auteur
-        const colBValue = b.querySelector(`td:nth-child(${colonne + 1})`).textContent.trim(); // idem
+    if (colonne === table.rows[0].cells.length - 1) return;
 
+    const trieRows = tableRows.sort((a, b) => { // On va trier les lignes du tableau en fonction de la colonne choisie.
+        const colAValue = a.querySelector(`td:nth-child(${colonne + 1})`).textContent.trim();
+        const colBValue = b.querySelector(`td:nth-child(${colonne + 1})`).textContent.trim();
         return colAValue > colBValue ? (1 * dirModif) : (-1 * dirModif);
     });
 
-    // On supprime toutes les lignes du tableau
-    while (tableBody.firstChild){
+    while (tableBody.firstChild) { // On va supprimer toutes les lignes du tableau avant d'ajouter les nouvelles lignes triées.
         tableBody.removeChild(tableBody.firstChild);
     }
 
-    // On réaffiche toutes les lignes (mais elles seront triés)
-    tableBody.append(...trieRows);
+    trieRows.forEach(row => { // On va faire une animation de la ligne qui est ajoutée
+        row.classList.remove("animated-row");
+        void row.offsetWidth;
+        row.classList.add("animated-row");
+        tableBody.appendChild(row);
+    });
 
     // On va enregistrer comment les colonnes sont déjà triées
-    table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc")); // fait en sorte que lorsque on clique sur un autre th, on supprime le th-sort-asc/desc existant, cela en fait donc un a la fois.
+    table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc"));  // fait en sorte que lorsque on clique sur un autre th, on supprime le th-sort-asc/desc existant, cela en fait donc un a la fois.
     table.querySelector(`th:nth-child(${colonne + 1})`).classList.toggle("th-sort-asc", asc);
     table.querySelector(`th:nth-child(${colonne + 1})`).classList.toggle("th-sort-desc", !asc);
 }
+
+// Gestion du tri
+document.querySelectorAll(".table_reservation th").forEach(headerCell => { // On va séléctionner tous les th de la table
+    headerCell.addEventListener("click", () => {
+        const tableElement = headerCell.closest("table"); // On va séléctionner la table dans laquelle se trouve le th sur lequel on a cliqué
+        const headerIndice = Array.prototype.indexOf.call(headerCell.parentElement.children, headerCell); // On va séléctionner l'indice du th sur lequel on a cliqué
+        const estAsc = headerCell.classList.contains("th-sort-asc"); // On va séléctionner si le th est trié dans l'ordre croissant ou décroissant
+
+        TrieTableauParColonne(tableElement, headerIndice, !estAsc); // On va trier la table en fonction de l'indice du th sur lequel on a cliqué et de l'ordre dans lequel il est trié.
+    });
+});
 
 document.addEventListener("DOMContentLoaded", function () {
     const btnAnnuler = document.querySelectorAll(".btnAnnuler"); // Séléctionne le bouton d'annulation
