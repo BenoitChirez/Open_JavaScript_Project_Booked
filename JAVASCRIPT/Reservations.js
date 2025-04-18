@@ -1,3 +1,9 @@
+/*
+    Cette page contient le code JavaScript pour gérer les réservations.
+    Elle inclut des fonctionnalités telles que l'annulation de réservations, le tri des colonnes d'un tableau et la gestion de l'affichage d'un message lorsque le tableau est vide.
+    Elle gère également la mise en couleur des lignes du tableau en fonction de la date de fin de réservation.
+*/
+
 /**
  * Fonction qui permettra de trier une table HTML
  * 
@@ -6,60 +12,51 @@
  * @param {Boolean} asc Va déterminer si le tri sera dans l'ordre croissant ou décroissant
  */
 function TrieTableauParColonne(table, colonne, asc = true) {
-    const tableBody = table.tBodies[0];
-    const tableRows = Array.from(tableBody.querySelectorAll("tr"));
+    const tableBody = table.tBodies[0]; // Séléctionne la partie <tbody></tbody> de notre tableau.
+    const tableRows = Array.from(tableBody.querySelectorAll("tr")); // Séléctionne toutes les lignes du tableau et les mets dans un tableau.
     const dirModif = asc ? 1 : -1;
 
     if (colonne === table.rows[0].cells.length - 1) return;
 
-    const trieRows = tableRows.sort((a, b) => {
+    const trieRows = tableRows.sort((a, b) => { // On va trier les lignes du tableau en fonction de la colonne choisie.
         const colAValue = a.querySelector(`td:nth-child(${colonne + 1})`).textContent.trim();
         const colBValue = b.querySelector(`td:nth-child(${colonne + 1})`).textContent.trim();
         return colAValue > colBValue ? (1 * dirModif) : (-1 * dirModif);
     });
 
-    while (tableBody.firstChild) {
+    while (tableBody.firstChild) { // On va supprimer toutes les lignes du tableau avant d'ajouter les nouvelles lignes triées.
         tableBody.removeChild(tableBody.firstChild);
     }
 
-    trieRows.forEach(row => {
+    trieRows.forEach(row => { // On va faire une animation de la ligne qui est ajoutée
         row.classList.remove("animated-row");
         void row.offsetWidth;
         row.classList.add("animated-row");
         tableBody.appendChild(row);
     });
 
-    table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc"));
+    // On va enregistrer comment les colonnes sont déjà triées
+    table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc"));  // fait en sorte que lorsque on clique sur un autre th, on supprime le th-sort-asc/desc existant, cela en fait donc un a la fois.
     table.querySelector(`th:nth-child(${colonne + 1})`).classList.toggle("th-sort-asc", asc);
     table.querySelector(`th:nth-child(${colonne + 1})`).classList.toggle("th-sort-desc", !asc);
 }
 
-function showToast(message = "Réservation annulée avec succès") {
-    const toast = document.getElementById("confirmation_message");
-    toast.textContent = message;
-    toast.style.display = "block";
-
-    setTimeout(() => {
-        toast.style.display = "none";
-    }, 3000); // 3 secondes
-}
-
 // Gestion du tri
-document.querySelectorAll(".table_reservation th").forEach(headerCell => {
+document.querySelectorAll(".table_reservation th").forEach(headerCell => { // On va séléctionner tous les th de la table
     headerCell.addEventListener("click", () => {
-        const tableElement = headerCell.closest("table");
-        const headerIndice = Array.prototype.indexOf.call(headerCell.parentElement.children, headerCell);
-        const estAsc = headerCell.classList.contains("th-sort-asc");
+        const tableElement = headerCell.closest("table"); // On va séléctionner la table dans laquelle se trouve le th sur lequel on a cliqué
+        const headerIndice = Array.prototype.indexOf.call(headerCell.parentElement.children, headerCell); // On va séléctionner l'indice du th sur lequel on a cliqué
+        const estAsc = headerCell.classList.contains("th-sort-asc"); // On va séléctionner si le th est trié dans l'ordre croissant ou décroissant
 
-        TrieTableauParColonne(tableElement, headerIndice, !estAsc);
+        TrieTableauParColonne(tableElement, headerIndice, !estAsc); // On va trier la table en fonction de l'indice du th sur lequel on a cliqué et de l'ordre dans lequel il est trié.
     });
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    const btnAnnuler = document.querySelectorAll(".btnAnnuler");
-    const confirmationPopup = document.getElementById("confirmationPopup");
-    const btnConfirm = document.getElementById("btnConfirm");
-    const btnCancel = document.getElementById("btnCancel");
+    const btnAnnuler = document.querySelectorAll(".btnAnnuler"); // Séléctionne le bouton d'annulation
+    const confirmationPopup = document.getElementById("confirmationPopup"); // Séléctionne le popup de confirmation
+    const btnConfirm = document.getElementById("btnConfirm"); // Séléctionne le bouton de confirmation
+    const btnCancel = document.getElementById("btnCancel"); // Séléctionne le bouton d'annulation de la popup
     let reservationIdToDelete = null;
 
     // Ouvrir la popup et stocker l'ID de la réservation
@@ -105,12 +102,13 @@ function verifierTableVide() {
     const tbody = table.querySelector("tbody");
     const message = document.getElementById("noReservationMessage");
 
-    if (tbody.children.length === 0) {
+    if (tbody.children.length === 0) { // Si le tableau n'a pas de lignes
+        // On affiche le message et on cache le tableau
         table.style.display = "none";
-        if (message) message.style.display = "block";
-    } else {
+        if (message) message.style.display = "block"; // On affiche le message
+    } else { // Sinon, on cache le message et on affiche le tableau
         table.style.display = "table";
-        if (message) message.style.display = "none";
+        if (message) message.style.display = "none"; // On cache le message
     }
 }
 
@@ -119,8 +117,8 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 // Permet de mettre en couleur en fonction de la date de fin
-// Rouge : date passée
-// Orange : date dans 3 jours ou moins
+// Rouge : date de fin est passée
+// Orange : date de fin dans 3 jours ou moins
 document.addEventListener("DOMContentLoaded", function () {
     const rows = document.querySelectorAll(".table_reservation tbody tr");
 
@@ -141,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (diffDays <= 3) {
             row.style.backgroundColor = "#ffe5b4"; // orange : 3 jours ou moins restants
         } 
-        /*else {
+        /*else {  // Si on veut mettre en vert les réservations qui sont avec plus de 3 jours avant la date de fin
             row.style.backgroundColor = "#ccffcc"; // vert : plus de 3 jours
         } */
     });

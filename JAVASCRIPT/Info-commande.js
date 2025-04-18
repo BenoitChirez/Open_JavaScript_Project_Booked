@@ -19,6 +19,7 @@ emprunt.innerHTML = "A rendre : " + aujourdhuiPlusUnMois.toLocaleDateString("fr-
 ///////////////////////// Vérification d'exemplaires restants de livre /////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
+// récupération des éléments de la page php
 var exemplairesRestants = document.getElementById("exemplairesRestants");
 var valider = document.getElementById("valider");
 var emprunt = document.getElementById("emprunt");
@@ -28,7 +29,10 @@ valider.addEventListener("mouseenter", function() {
     valider.style.cursor = "pointer"; // quand la souris survole l'élément, la souris devient un pointeur
 });
 
-if (exemplairesRestants.innerHTML == 0) { // si il n'y a plus d'exemplaires disponibles
+if (exemplairesRestants.innerHTML == 0) {
+    // si il n'y a plus d'exemplaires disponibles,
+    // on supprime le bouton le nombre d'exemplaires restants et la date de rendu du livre
+    // et on affiche qu'aucun exemplaire est disponible
     emprunt.style.display = "none";
     restants.style.display = "none";
     valider.style.fontSize = "1.5vw";
@@ -49,40 +53,41 @@ document.addEventListener('DOMContentLoaded', function () {
     let angle = 0;
     let rotating = false;
 
-    // Crée un objet Audio
+    // crée un objet Audio
     const spinSound = new Audio('../AUDIO/sliding_rock.mp3');
-    spinSound.loop = true; // Le son tourne en boucle pendant l'animation
+    spinSound.loop = true; // le son tourne en boucle pendant l'animation
 
     function rotate() {
-        angle += 0.85;
-        img.style.transform = `rotateY(${angle}deg)`;
-        animationFrame = requestAnimationFrame(rotate);
+        angle += 0.85; // vitesse de rotation
+        img.style.transform = `rotateY(${angle}deg)`; // rotation autour de l'axe vertical
+        animationFrame = requestAnimationFrame(rotate); // le navigateur éxécute rotate() à chaque raffraîchissement de l'écran
+                                                        // généralement 60 fois par secondes
     }
 
-    img.addEventListener('mouseenter', () => {
+    img.addEventListener('mouseenter', () => { // lorsqu'on place le curseur sur l'image
         if (!rotating) {
             rotating = true;
             img.style.transition = 'none'; // désactive la transition pendant la rotation
             rotate();
 
             // Lance le son
-            spinSound.currentTime = 0; // recommence au début
+            spinSound.currentTime = 0; // recommence le son au début
             spinSound.play();
         }
     });
 
-    img.addEventListener('mouseleave', () => {
+    img.addEventListener('mouseleave', () => { // lorsqu'on enlève le curseur de l'image
         rotating = false;
-        cancelAnimationFrame(animationFrame);
+        cancelAnimationFrame(animationFrame); // on stoppé l'animation
 
-        // Active la transition pour revenir à la position initiale
+        // active la transition pour revenir à la position initiale
         img.style.transition = 'transform 1.2s ease';
         img.style.transform = `rotateY(0deg)`;
 
-        // Reset de l'angle pour la prochaine fois
+        // reset de l'angle pour la prochaine fois
         angle = 0;
 
-        // Stoppe le son
+        // stoppe le son
         spinSound.pause();
         spinSound.currentTime = 0;
     });
