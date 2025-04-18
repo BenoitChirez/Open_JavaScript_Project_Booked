@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $email = $_POST['email_connexion'];
         $motdepasse = $_POST['motdepasse_connexion'];
 
-        // Connexion à la base de données
+        // Connexion à la bdd
         $servername = "localhost";
         $username = "root";
         $password = "root";
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $conn = new mysqli($servername, $username, $password, $dbname, $port);
 
-        if ($conn->connect_error) {
+        if ($conn->connect_error) {   //Erreur
             die("Connexion échouée : " . $conn->connect_error);
         }
 

@@ -1,8 +1,10 @@
-// Récupération des boutons et des formulaires
+// Récupération des boutons et des formulaires, afficher sois formulaire d'inscription, sois de connection en 
+//fonction des boutons
+
 const btnConnexion = document.getElementById('btn-connexion');
 const btnInscription = document.getElementById('btn-inscription');
 const formConnexion = document.getElementById('form-connexion');
-const formInscription = document.getElementById('form-inscription');  // Assure-toi que cette ligne n'est pas dupliquée
+const formInscription = document.getElementById('form-inscription'); 
 
 // Clic sur "Connexion"
 btnConnexion.addEventListener('click', () => {
