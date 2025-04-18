@@ -20,7 +20,7 @@ body {
 
 .library {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* permet le retour à la ligne des éléments à l'intérieur du .library */
     justify-content: center;
     gap: 20px;
     padding: 20px;
@@ -37,7 +37,7 @@ body {
 }
 
 .book:hover {
-    transform: scale(1.05);
+    transform: scale(1.05); /* aggrandit le cadre du livre lorsqu'on passe la souris dessus */
 }
 
 .book img {
