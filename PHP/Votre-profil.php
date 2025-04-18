@@ -29,99 +29,22 @@ if ($conn->connect_error) {
         <link rel="stylesheet" type="text/css" href="../CSS/Acceuil.css" />
         <link rel="stylesheet" type="text/css" href="../CSS/Footer.css" />
         <link rel="stylesheet" type="text/css" href="../CSS/Header.css" />
-        <link rel="icon" type="image/png" href="../images/logo_onglet.png" /> <!-- Icône de la page -->
+        <link rel="stylesheet" type="text/css" href="../CSS/Votre-profil.css" />
+       <link rel="icon" type="image/png" href="../images/logo_onglet.png" /> <!-- Icône de la page -->
 
-    <style>
-        body {
-          font-family: Arial, sans-serif;
-          background-color: #f5e6d7; 
-          color: #4e342e; 
-          margin: 0;
-          min-height: 100vh;
-          display: flex;
-          flex-direction: column;
-        }
-        main {
-          flex: 1;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-
-        .profile-card {
-          background-color: #d7b899;
-          color: #4e342e;
-          padding: 30px;
-          border-radius: 25px;
-          box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-          width: 300px;
-          text-align: center;
-          font-family: 'Poppins', sans-serif;
-          transition: transform 0.3s ease-in-out;
-        }
-
-        .profile-card:hover {
-          transform: scale(1.05);
-        }
-
-        .profile-card h2 {
-          margin-bottom: 10px;
-          font-weight: 600;
-        }
-
-        .profile-card p {
-          margin: 5px 0;
-          font-size: 14px;
-        }
-
-        .profile-id {
-          font-size: 0.8em;
-          color: #4e342e;
-          margin-top: 10px;
-          opacity: 0.7;
-        }
-        .logout-form {
-          margin-top: 20px;
-          text-align: center;
-        }
-
-        .logout-button {
-          background-color: #c0392b; /* rouge profond */
-          color: white;
-          border: none;
-          padding: 10px 20px;
-          font-family: 'Poppins', sans-serif;
-          font-weight: 600;
-          font-size: 14px;
-          border-radius: 8px;
-          cursor: pointer;
-          transition: background-color 0.3s ease;
-          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .logout-button:hover {
-          background-color: #e74c3c;
-        }
-        .profile-container {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-
-
-  </style>
     </head>
     <body>
 
-        <?php include 'header.php'; ?>
+        <?php include 'header.php'; ?> 
+        <?//inclusion du header ?>
         
         <main>
-            <div class="profile-container">
-                <div class="profile-card">
+            <div class="profile-container"> <?// conteneur pour tous les element du main?>
+                <h1>Bienvenue dans le profil</h1>
+                <div class="profile-card"> <?// cette carte contient les information de l'utilisateur?>
                     <h2>
                         <?php 
-                        if (isset($_SESSION['nom'])) {
+                        if (isset($_SESSION['nom'])) {//affichage du nom du client si il existe
                             echo $_SESSION['nom'];
                             }
                             else {
@@ -131,7 +54,7 @@ if ($conn->connect_error) {
                     </h2>
                     <p>
                         <?php 
-                            if (isset($_SESSION['email'])) {
+                            if (isset($_SESSION['email'])) {//affichage du mail du client si il existe
                                 echo $_SESSION['email'];
                                 }
                                 else {
@@ -141,7 +64,7 @@ if ($conn->connect_error) {
                     </p>
                     <div class="profile-id">
                         <?php 
-                                if (isset($_SESSION['id_utilisateur'])) {
+                                if (isset($_SESSION['id_utilisateur'])) {//affichage du ID du client si il existe
                                     echo"ID:#";
                                     echo $_SESSION['id_utilisateur'];
                                     }
@@ -152,12 +75,12 @@ if ($conn->connect_error) {
 
                     </div>
                 </div>
-                <form action="deconnexion.php" method="post" class="logout-form">
+                <form action="deconnexion.php" method="post" class="logout-form"><?//bouton pour deconnexion?>
                     <button type="submit" class="logout-button">Déconnexion</button>
                 </form>
             </div>
         </main>
 
-        <?php include 'footer.php'; ?>
+        <?php include 'footer.php'; // affichage du footer ?>
     </body>
 </html>

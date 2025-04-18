@@ -1,27 +1,36 @@
 main {
     padding: 5vh 5vw;
-    display: grid;
+    display: grid; /* display grid afin de pouvoir dispositionner les éléments plus facilement sur la page*/
     gap: 2vh;
     grid-template-columns: 2fr 5fr 2fr;
     grid-template-rows: 1fr auto 1fr;
 }
 
 .case {
-    display: flex;
     margin: 0;
+
+    /* centrer le contenu des cases au centre vertical et horizontal */
+    display: flex;
     align-items: center;
     justify-content: center;
 }
 
 #titre {
-    grid-column: 2 / 3;
+    grid-column: 2 / 3; /* placement du titre entre la 2eme et 3eme colonne de la grid */
+    grid-row: 1 / 2; /* placement du titre entre la 1ere et 2eme colonne de la grid */
+    font-size: 3vw; /* taille du texte définie à 3% de la taille horizontale de l'écran */
+}
+
+#funfact {
+    grid-column: 1 / 2;
     grid-row: 1 / 2;
-    font-size: 3vw;
+    font-size: 1vw;
 }
 
 #couverture {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
+    perspective: 1000px; /* donne un effet 3D de perspective pour l'animation de rotation en javascript */
 }
 
 #auteuretc {
@@ -31,15 +40,15 @@ main {
 }
 
 #description {
-    background-color: #f5e6d7;
-    color: #4e342e;
+    background-color: #f5e6d7; /* couleur du fond */
+    color: #4e342e; /* couleur de l'écriture */
     border-radius: 2vh;
-    box-shadow: .5vh .5vh 0 0 rgba(0, 0, 0, 0.3);
-    padding: 3vw;
+    box-shadow: .5vh .5vh 0 0 rgba(0, 0, 0, 0.3); /* ombre noire transparente à 30% en bas à droite du cadre */
+    padding: 3vw; /* espace entre le bord et le cadre d'écriture */
     font-size: 1.4vw;
     grid-column: 2 / 4;
     grid-row: 2 / 3;
-    margin: 0;
+    margin: 0; /* espace entre les éléments autour et le bord */
 }
 
 #emprunt {
@@ -62,15 +71,15 @@ main {
     background-color: #f5e6d7;
     color: #4e342e;
     border-radius: 1vw;
-    transition: all 0.1s ease;
+    transition: all 0.1s ease; /* transition pour le #bouton:active */
     box-shadow: .5vh .5vh rgba(0, 0, 0, 0.3);
 }
 
-#bouton:hover {
+#bouton:hover { /* lors du survol du bouton */
     cursor: pointer;
 }
 
-#bouton:active {
+#bouton:active { /* lors du clique sur le bouton, effet de bouton qui s'enfonce dans la page */
     transform: translateY(2px);
     box-shadow: inset .5vh .5vh rgba(0, 0, 0, 0.3);
 }
@@ -81,16 +90,22 @@ main {
 }
 
 #exemplairesRestants {
-    display: none;
+    display: none; /* n'affiche pas le div dans la page */
 }
 
 .cover {
     width: 18vw;
     border-radius: 2vh;
     box-shadow: .5vh .5vh 0 0 rgba(0, 0, 0, 0.3);
+
+    /* pour l'animation */
+    transition: transform 0.2s linear;
+    transform-style: preserve-3d;
+    display: block;
+    margin: auto;
 }
 
-/* responsive */
+/* responsive format téléphone */
 
 @media (max-width: 800px) {
     main {
