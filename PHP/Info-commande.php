@@ -23,7 +23,7 @@ if ($conn->connect_error) {
 
 // Récupération de l'id du livre dans l'url, l'id est inséré dans l'url depuis la page bibliotheque.php
 // les informations de la page seront piochés dans la base de données selon l'id du livre, ce qui évite de coder 20 pages pour 20 livres
-$id = isset($_GET['id']) ? intval($_GET['id']) :
+$id = isset($_GET['id']) ? intval($_GET['id']) : 1;
 
 // Préparation de la requête
 $stmt = $conn->prepare("SELECT * FROM livre WHERE id_livre = ?");
