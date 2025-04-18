@@ -1,47 +1,49 @@
-/* 1. Mise en page du main */
+
 body{
   background-color: #f5e6d7;
 }
-main {
+
+main {   
   min-height: 78vh;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centrage vertical */
-  align-items: center;     /* Centrage horizontal */
+  justify-content: center;  
+  align-items: center;      
   box-sizing: border-box;
 }
 
-/* 2. Mise en page du tableau à 3x3 */
+
+/*Style pour le tableau et les formulaires*/
+ 
 main#tableau {
   display: grid;
   grid-template-columns: 30% 40% 30%;
   grid-template-rows: 20% 60% 20%;
   width: 100vw;
   max-width: 100%;
-  height: 100vh;            /* Hauteur 100% de la fenêtre */
+  height: 100vh;             
   box-sizing: border-box;
 }
 
-/* 3. Centrage des cellules */
+ 
 .cellule {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #885f55;
 }
-
-/* 4. Cellule centrale (n°5) */
+ 
 #centre {
   display: flex;
-  justify-content: center; /* Centrer horizontalement */
-  align-items: center;     /* Centrer verticalement */
+  justify-content: center;  
+  align-items: center;      
   background-color: #d7b899;
   padding: 20px;
   width: 100%;
-  height: 100%;            /* Remplir toute la hauteur de la cellule centrale */
+  height: 100%;           
 }
 
-/* 5. Conteneur du formulaire */
+ 
 .container {
   background-color: #d7b899;
   border: 3px solid #9e613e;
@@ -53,23 +55,23 @@ main#tableau {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto; /* Centrage horizontal de la boîte de formulaire */
+  margin: 0 auto;  
 }
 
-/* 6. Titre */
+ 
 .container h2 {
   margin-bottom: 20px;
   color: white;
 }
 
-/* 7. Formulaire */
+ 
 .container form {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-/* 8. Champs de saisie */
+ 
 .container input {
   margin-bottom: 10px;
   padding: 10px;
@@ -77,8 +79,7 @@ main#tableau {
   border-radius: 10px;
   border: 1px solid #ccc;
 }
-
-/* 9. Bouton */
+ /*Pour les boutons, mettre un style et un hover*/
 .container button {
   padding: 10px;
   font-size: 1rem;
@@ -94,7 +95,7 @@ main#tableau {
   background-color: #ae6f49;
 }
 
-/* 10. Onglets Connexion / Inscription */
+ 
 .tabs {
   display: flex;
 
@@ -118,7 +119,7 @@ main#tableau {
   color: white;
 }
 
-/* 11. Formulaires : afficher/masquer selon onglet actif */
+ 
 .formulaire {
   display: none;
   width: 100%;
