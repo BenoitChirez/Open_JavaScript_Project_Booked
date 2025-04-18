@@ -1,3 +1,12 @@
+<!-- 
+    Cette page est la page ou l'on peut voir toutes les réservations de l'utilisateur connecté.
+    Elle affiche un tableau avec les informations sur les livres réservés,
+    la date de début et de fin de réservation, et un bouton pour annuler la réservation.
+    Si l'utilisateur n'a pas de réservations, un message s'affiche pour l'informer.
+    La page utilise une connexion à la base de données pour récupérer les informations sur les réservations.
+    Elle est relié à la page de style Reservation.css pour le style, et à la page de script Reservations.js pour les interactions.
+-->
+
 <?php
 session_start();
 // Activer l'affichage des erreurs
@@ -29,10 +38,10 @@ $sql = "SELECT livre.nom_livre, livre.nom_auteur, reserve.j_debut, reserve.j_fin
         FROM reserve
         JOIN livre ON reserve.id_livre = livre.id_livre
         WHERE reserve.id_utilisateur = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $id_utilisateur);
-$stmt->execute();
-$result = $stmt->get_result();
+$stmt = $conn->prepare($sql); // Prépare la requête
+$stmt->bind_param("i", $id_utilisateur); // Lie le paramètre
+$stmt->execute(); // Exécute la requête
+$result = $stmt->get_result(); // Récupère le résultat
 ?>
 
 <!DOCTYPE html>
@@ -42,18 +51,20 @@ $result = $stmt->get_result();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Vos réservations </title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../CSS/Reservation.css" />
-    <link rel="stylesheet" type="text/css" href="../CSS/Footer.css" />
-    <link rel="stylesheet" type="text/css" href="../CSS/Header.css" />
+    <link rel="stylesheet" type="text/css" href="../CSS/Reservation.css" /> <!-- Feuille de style pour la page des réservations -->
+    <link rel="stylesheet" type="text/css" href="../CSS/Footer.css" /> <!-- Feuille de style pour le pied de page -->
+    <link rel="stylesheet" type="text/css" href="../CSS/Header.css" /> <!-- Feuille de style pour l'en-tête -->
+    <link rel="icon" type="image/png" href="../images/logo_onglet.png" /> <!-- Icône de la page -->
 </head>
 <body>
 <?php include 'header.php'; ?>
 
-<main>
+<main> <!-- Contenu principal de la page -->
     <h2 id="titreReservations">Mes Réservations</h2>
-
+    
+    <!-- Tableau des réservations -->
     <table class="table table_reservation">
-        <thead>
+        <thead> <!-- En-tête de la table -->
             <tr>
                 <th>Titre</th>
                 <th>Auteur</th>
@@ -62,21 +73,22 @@ $result = $stmt->get_result();
                 <th>Annuler la réservation</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody> <!-- Corps de la table -->
             <?php if ($result->num_rows > 0): ?>
-                <?php while ($row = $result->fetch_assoc()): ?>
-                    <tr data-id="<?= $row['idreserve'] ?>">
-                        <td><?= htmlspecialchars($row['nom_livre']) ?></td>
-                        <td><?= htmlspecialchars($row['nom_auteur']) ?></td>
-                        <td><?= htmlspecialchars($row['j_debut']) ?></td>
-                        <td><?= htmlspecialchars($row['j_fin']) ?></td>
-                        <td><button class="btnAnnuler" data-id="<?= $row['idreserve']; ?>">X</button></td>
+                <?php while ($row = $result->fetch_assoc()): ?> <!-- Boucle pour afficher chaque réservation -->
+                    <tr data-id="<?= $row['idreserve'] ?>"> <!-- Attribut data-id pour identifier la réservation -->
+                        <td><?= htmlspecialchars($row['nom_livre']) ?></td> <!-- Affiche le titre du livre -->
+                        <td><?= htmlspecialchars($row['nom_auteur']) ?></td> <!-- Affiche le nom de l'auteur -->
+                        <td><?= htmlspecialchars($row['j_debut']) ?></td> <!-- Affiche la date de réservation -->
+                        <td><?= htmlspecialchars($row['j_fin']) ?></td> <!-- Affiche la date de fin de réservation -->
+                        <td><button class="btnAnnuler" data-id="<?= $row['idreserve']; ?>">X</button></td> <!-- Bouton pour annuler la réservation -->
                     </tr>
                 <?php endwhile; ?>
             <?php endif; ?>
         </tbody>
     </table>
 
+    <!-- Popup de confirmation de suppression de la réservation -->
     <div id="confirmationPopup" class="popup-overlay hidden">
         <div class="popup-box">
             <p>Voulez-vous vraiment supprimer cette réservation définitivement ?</p>
@@ -87,18 +99,15 @@ $result = $stmt->get_result();
         </div>
     </div>
 
+    <!-- Message affiché si l'utilisateur n'a pas de réservations -->
     <div id="noReservationMessage" class="hidden">
         <img src="../images/no-reservation.png" alt="Aucune réservation" style="display: block; margin: 0 auto; width: 100px; height: auto;">
         <p style="text-align: center; font-size: 18px; margin-top: 20px;">Vous n'avez aucune réservation en cours.</p>
     </div>
-
-    <div id="confirmation_message" class="confirmation_message">
-        Réservation annulée avec succès.
-    </div>
 </main>
 
 <?php include 'footer.php'; ?>
-<script src="../JAVASCRIPT/Reservations.js"></script>
+<script src="../JAVASCRIPT/Reservations.js"></script> <!-- Script pour gérer les interactions de la page -->
 </body>
 </html>
 

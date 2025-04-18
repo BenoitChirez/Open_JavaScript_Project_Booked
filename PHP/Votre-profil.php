@@ -30,7 +30,8 @@ if ($conn->connect_error) {
         <link rel="stylesheet" type="text/css" href="../CSS/Footer.css" />
         <link rel="stylesheet" type="text/css" href="../CSS/Header.css" />
         <link rel="stylesheet" type="text/css" href="../CSS/Votre-profil.css" />
-    
+       <link rel="icon" type="image/png" href="../images/logo_onglet.png" /> <!-- Icône de la page -->
+
     </head>
     <body>
 

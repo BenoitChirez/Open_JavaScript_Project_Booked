@@ -1,3 +1,8 @@
+/*
+Cette feuille de style est dédiée à la page de réservation du restaurant.
+Elle contient des styles pour le tableau de réservation, les boutons, les animations de tri et de suppression, ainsi que la boîte de confirmation de suppression.
+*/
+
 main {
     min-height: 60vh; /* Pour ne pas avoir un affichage mauvais du footer */
     display: flex;
@@ -11,7 +16,7 @@ main {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 */
 
-.table_reservation {
+.table_reservation { /* Style du tableau de réservation */
     border-collapse: collapse;
     font-size: 0.9em;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -20,37 +25,37 @@ main {
     margin-bottom: 10px;
 }
 
-.table_reservation thead tr {
+.table_reservation thead tr { /* Style de l'en-tête du tableau */
     background-color: #4e342e;
     color: #ffffff;
     text-align: left;
 }
 
-.table_reservation th,
+.table_reservation th, /* Style des cellules de l'en-tête */
 .table_reservation td {
     padding: 12px 15px;
     text-align: center;
     min-width: 175px;
 }
 
-.table_reservation tbody tr {
+.table_reservation tbody tr { /* Style des lignes impaires du corps du tableau */
     border-bottom: 1px solid #dddddd;
 }
 
-.table_reservation tbody tr:nth-of-type(even) {
+.table_reservation tbody tr:nth-of-type(even) { /* Style des lignes paires du corps du tableau */
     background-color: #f5f5f5;
 }
 
-.table_reservation tbody tr:last-of-type {
+.table_reservation tbody tr:last-of-type { /* Style de la dernière ligne du corps du tableau */
     border-bottom: 2px solid #4e342e;
 }
 
-.table_reservation tbody tr.active-row {
+.table_reservation tbody tr.active-row { /* Style de la ligne active du corps du tableau */
     font-weight: bold;
     color: #4e342e;
 }
 
-button {
+button { /* Style des boutons */
     text-decoration: none;
     color: white;
     background: linear-gradient(135deg, #d9534f, #c9302c); /* Rouge avec effet de profondeur */
@@ -64,16 +69,16 @@ button {
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
 
-button:hover {
+button:hover { /* Effet de survol du bouton */
     background: linear-gradient(135deg, #c9302c, #a52a2a); /* Assombrissement au survol */
     transform: scale(1.05);
 }
 
-button:active {
+button:active { /* Effet d'activation du bouton */
     transform: scale(0.95);
 }
 
-h2 {
+h2 { /* Style du titre de la page */
     text-align: center;
     font-size: 24px;
     font-weight: bold;
@@ -90,7 +95,7 @@ h2 {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 */
 
-.table_reservation th{
+.table_reservation th{ /* Style des cellules de l'en-tête */
     cursor : pointer;
 }
 
@@ -102,13 +107,13 @@ h2 {
     content: "\25be" /* Fait le triangle vers le bas pour montrer que c'est trié dans l'ordre décroissant */
 }
 
-.table_reservation .th-sort-asc::after, 
-.table_reservation .th-sort-desc::after {
+.table_reservation .th-sort-asc::after,  
+.table_reservation .th-sort-desc::after { /* Style des triangles de tri */
     margin-left : 5px;
 }
 
 .table_reservation .th-sort-asc, 
-.table_reservation .th-sort-desc {
+.table_reservation .th-sort-desc { /* Style des cellules triées */
     background : rgba(0, 0, 0, 0.1)
 } 
 
@@ -124,34 +129,8 @@ h2 {
     }
 }
   
-.animated-row {
+.animated-row { /* Animation pour les lignes triées */
     animation: fadeTri 0.3s ease forwards;
-}
-
-/*
-///////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////                    Supression ligne du tableau                    ////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-*/
-
-/* Animation de disparition */
-@keyframes fadeOutRow {
-    0% {
-        opacity: 1;
-        background: linear-gradient(135deg, #edb5b3, #f19592);
-        transform: scale(1);
-        height: auto;
-    }
-    100% {
-        opacity: 0;
-        background: linear-gradient(135deg, #edb5b3, #f19592);
-        transform: scale(0.95);
-        height: 0;
-    }
-}
-
-.fade-out {
-    animation: fadeOutRow 0.6s ease forwards;
 }
 
 /*
@@ -160,8 +139,7 @@ h2 {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 */
 
-/* Overlay */
-.popup-overlay {
+.popup-overlay { /* Couche d'arrière-plan de la boîte de confirmation */
     position: fixed;
     top: 0;
     left: 0;
@@ -174,8 +152,7 @@ h2 {
     z-index: 1000;
 }
 
-/* Boîte */
-.popup-box {
+.popup-box { /* Boîte de confirmation */
     background: white;
     padding: 25px 30px;
     border-radius: 10px;
@@ -184,14 +161,14 @@ h2 {
     animation: fadeTri 0.3s ease;
 }
 
-.popup-buttons {
+.popup-buttons { /* Conteneur des boutons de la boîte de confirmation */
     margin-top: 20px;
     display: flex;
     justify-content: space-around;
     gap: 20px;
 }
 
-.popup-box button {
+.popup-box button { /* Style des boutons de la boîte de confirmation */
     padding: 10px 20px;
     border-radius: 8px;
     border: none;
@@ -201,57 +178,16 @@ h2 {
     transition: all 0.3s ease-in-out;
 }
 
-#btnConfirm {
+#btnConfirm { /* Style du bouton de confirmation */
     background: linear-gradient(135deg, #d9534f, #c9302c);
     color: white;
 }
 
-#btnCancel {
+#btnCancel { /* Style du bouton d'annulation */
     background: #ccc;
     color: #333;
 }
 
-.hidden {
+.hidden { /* Classe pour masquer la boîte de confirmation */
     display: none;
-}
-
-
-/* Style du message Toast */
-.confirmation_message {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    display: none;
-    z-index: 1000;
-    font-family: Arial, sans-serif;
-    animation: fadeinmessage 0.5s, fadeoutmessage 0.5s 2.5s;
-}
-
-/* Animation de l'apparition du toast */
-@keyframes fadeinmessage {
-    from {
-        opacity: 0;
-        bottom: 20px;
-    }
-    to {
-        opacity: 1;
-        bottom: 30px;
-    }
-}
-
-/* Animation de la disparition du toast */
-@keyframes fadeoutmessage {
-    from {
-        opacity: 1;
-        bottom: 30px;
-    }
-    to {
-        opacity: 0;
-        bottom: 20px;
-    }
 }
