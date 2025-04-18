@@ -1,13 +1,15 @@
+/* === Style général === */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f5e6d7;
-    color: #4e342e;
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: #f5e6d7; /* Fond beige doux */
+    color: #4e342e; /* Texte brun foncé */
     margin: 0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
+/* === Contenu principal centré verticalement et horizontalement === */
 main {
     flex: 1;
     display: flex;
@@ -15,9 +17,16 @@ main {
     align-items: center;
 }
 
+/* === Conteneur général du profil + bouton === */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+/* === Carte de profil === */
 .profile-card {
-    background-color: #d7b899;
+    background-color: #d7b899; /* Fond assorti */
     color: #4e342e;
     padding: 30px;
     border-radius: 25px;
@@ -42,6 +51,7 @@ main {
         font-size: 14px;
     }
 
+/* === ID utilisateur en petit === */
 .profile-id {
     font-size: 0.8em;
     color: #4e342e;
@@ -49,13 +59,15 @@ main {
     opacity: 0.7;
 }
 
+/* === Formulaire de déconnexion === */
 .logout-form {
     margin-top: 20px;
     text-align: center;
 }
 
+/* === Bouton de déconnexion rouge === */
 .logout-button {
-    background-color: #c0392b; /* rouge profond */
+    background-color: #c0392b;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -65,15 +77,9 @@ main {
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
     .logout-button:hover {
         background-color: #e74c3c;
     }
-
-.profile-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
