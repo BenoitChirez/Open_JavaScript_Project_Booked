@@ -1,3 +1,5 @@
+
+<?//Page de Présentation du site avec logo et les specifité de notre services?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -11,13 +13,13 @@
     <script src="../JAVASCRIPT/acceuil.js"></script>
 </head>
 <body>
-    <?php include 'header.php'; ?>
+    <?php include 'header.php'; ?> <?//affichage du header?>
     <main>
         <div style="text-align: center; margin-top: 50px;">
-            <img src="../images/logo.png" alt="logo" width="350" height="350">
+            <img src="../images/logo.png" alt="logo" width="350" height="350"><?//Logo du site?>
         </div>
         <div style="display: flex; justify-content: center; gap: 20px; margin-top: 50px;">
-            <div class="info-boxa scroll-effect">
+            <div class="info-boxa scroll-effect"> <?// 3 box avec un effet d'apparition lors du scroll'?>
                 <h2>Un Accès Illimité à la Connaissance</h2>
                 <p>Que vous soyez passionné de romans, étudiant en quête de ressources ou curieux d’explorer de nouveaux horizons, notre bibliothèque vous offre un accès simple et rapide à des milliers d’ouvrages.</p>
             </div>
@@ -32,8 +34,8 @@
         </div>
     </main>
     
-    <?php include 'footer.php'; ?>
+    <?php include 'footer.php'; ?><?// affichge footer?>
     
 </body>
-<div class="sparkle-container"></div>
+<div class="sparkle-container"></div><?// conteneur pour l'effet visuele en fond (etoiles qui apparaissent et disparaissent)'?>
 </html>
