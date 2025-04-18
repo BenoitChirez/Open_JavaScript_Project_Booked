@@ -54,6 +54,7 @@ $result = $stmt->get_result(); // Récupère le résultat
     <link rel="stylesheet" type="text/css" href="../CSS/Reservation.css" /> <!-- Feuille de style pour la page des réservations -->
     <link rel="stylesheet" type="text/css" href="../CSS/Footer.css" /> <!-- Feuille de style pour le pied de page -->
     <link rel="stylesheet" type="text/css" href="../CSS/Header.css" /> <!-- Feuille de style pour l'en-tête -->
+    <link rel="icon" type="image/png" href="../images/logo_onglet.png" /> <!-- Icône de la page -->
 </head>
 <body>
 <?php include 'header.php'; ?>
