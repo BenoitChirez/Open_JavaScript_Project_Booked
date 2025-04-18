@@ -34,15 +34,16 @@ if ($conn->connect_error) {
     </head>
     <body>
 
-        <?php include 'header.php'; ?>
+        <?php include 'header.php'; ?> 
+        <?//inclusion du header ?>
         
         <main>
-            <div class="profile-container">
+            <div class="profile-container"> <?// conteneur pour tous les element du main?>
                 <h1>Bienvenue dans le profil</h1>
-                <div class="profile-card">
+                <div class="profile-card"> <?// cette carte contient les information de l'utilisateur?>
                     <h2>
                         <?php 
-                        if (isset($_SESSION['nom'])) {
+                        if (isset($_SESSION['nom'])) {//affichage du nom du client si il existe
                             echo $_SESSION['nom'];
                             }
                             else {
@@ -52,7 +53,7 @@ if ($conn->connect_error) {
                     </h2>
                     <p>
                         <?php 
-                            if (isset($_SESSION['email'])) {
+                            if (isset($_SESSION['email'])) {//affichage du mail du client si il existe
                                 echo $_SESSION['email'];
                                 }
                                 else {
@@ -62,7 +63,7 @@ if ($conn->connect_error) {
                     </p>
                     <div class="profile-id">
                         <?php 
-                                if (isset($_SESSION['id_utilisateur'])) {
+                                if (isset($_SESSION['id_utilisateur'])) {//affichage du ID du client si il existe
                                     echo"ID:#";
                                     echo $_SESSION['id_utilisateur'];
                                     }
@@ -73,12 +74,12 @@ if ($conn->connect_error) {
 
                     </div>
                 </div>
-                <form action="deconnexion.php" method="post" class="logout-form">
+                <form action="deconnexion.php" method="post" class="logout-form"><?//bouton pour deconnexion?>
                     <button type="submit" class="logout-button">Déconnexion</button>
                 </form>
             </div>
         </main>
 
-        <?php include 'footer.php'; ?>
+        <?php include 'footer.php'; // affichage du footer ?>
     </body>
 </html>
