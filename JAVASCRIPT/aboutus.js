@@ -9,7 +9,7 @@ window.addEventListener("DOMContentLoaded", () => {
         "2": "Benoit , la (im)patience incarné.",
         "3": "Maxence: SUPER MEGA STYLE.",
         "4": "Samuel, Trafficant de petits LU.",
-        "5": "Shalom, ."
+        "5": "Shalom, Defenseur au real Madrid."
     };
 
     images.forEach((img) => {
