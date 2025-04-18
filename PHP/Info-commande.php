@@ -52,6 +52,7 @@ $livre = $result->fetch_assoc();
         
         <main>
             <h1 id="titre" class="case"><?= htmlspecialchars($livre['nom_livre']) ?></h1>
+            <p id="funfact">Placez votre curseur sur la couverture ! :D</p>
             <div id="couverture" class="case"><img class="cover" src="<?= htmlspecialchars($livre['chemin_image']) ?>" alt="sonic"></div>
             <div id="auteuretc" class="case"><?= htmlspecialchars($livre['nom_auteur']) ?></div>
             <p id="description" class="case"><?= htmlspecialchars($livre['description']) ?></p>
