@@ -5,11 +5,11 @@ window.addEventListener("DOMContentLoaded", () => {
     const images = document.querySelectorAll(".photo-row img");
     
     const descriptions = {
-        "1": "Adam, passionné par l'IA et les outils numériques.",
-        "2": "Benoît, fan de backend et des systèmes distribués.",
-        "3": "Max, créatif, aime les belles interfaces.",
-        "4": "Sam, expert mobile et optimisation.",
-        "5": "Shalom, focus cybersécurité et données perso."
+        "1": "Adam, sosie officiel de Tchoupi.",
+        "2": "Benoit , la (im)patience incarne.",
+        "3": "Maxence: SUPER MEGA STYLE.",
+        "4": "Samuel, Trafficant de petits LU.",
+        "5": "Shalom, Defenseur au real Madrid."
     };
 
     images.forEach((img) => {
