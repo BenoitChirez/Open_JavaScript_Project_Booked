@@ -1,22 +1,25 @@
+/* === Style général de la page === */
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f5e6d7;
-    color: #4e342e;
+    font-family: 'Poppins', sans-serif; /* Police moderne et lisible */
+    background-color: #f5e6d7; /* Fond beige doux */
+    color: #4e342e; /* Texte brun foncé */
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Pas de défilement horizontal */
 }
 
+/* === En-tête (Header) fixé en haut === */
 header {
-    /*background-color: #6d4c41;*/
+    /*background-color: #6d4c41;*/ /* Optionnel : fond marron foncé */
 
-    position: fixed;
+    position: fixed; /* Fixé en haut de la page */
     width: 100%;
     top: 0;
-    z-index: 1000;
-    transition: background 0.3s;
+    z-index: 1000; /* Devant les autres éléments */
+    transition: background 0.3s; /* Transition douce si on l’anime */
 }
 
+/* === Menu de navigation centré === */
 .nav-list {
     display: flex;
     justify-content: center;
@@ -31,42 +34,45 @@ header {
         font-weight: 600;
     }
 
+/* === Section principale === */
 main {
-    padding-top: 80px;
+    padding-top: 80px; /* Espace pour ne pas cacher par le header */
     text-align: center;
     margin-bottom: 50px;
 }
 
+/* === Pied de page (Footer) === */
 footer {
-    background-color: #6d4c41;
+    background-color: #6d4c41; /* Marron foncé */
     color: white;
     text-align: center;
     padding: 20px 0;
     margin-top: 50px;
 }
 
+/* === Paragraphes de texte === */
 p {
-    font-size: 20px;
+    font-size: 20px; /* Texte clair et grand */
 }
 
+/* === Boîte d'infos large (style bulle) === */
 .info-box {
     width: 80%;
-    margin-left: 10%;
+    margin-left: 10%; /* Centré avec marges latérales */
     height: 500px;
-    background: #d7b899;
-    border-radius: 17%;
+    background: #d7b899; /* Beige doux */
+    border-radius: 17%; /* Bords très arrondis */
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     font-size: 14px;
     text-align: center;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); /* Ombre légère */
     transition: transform 0.3s ease-in-out;
 }
 
-    
-
+/* === Effet d'apparition progressive au scroll === */
 .scroll-effect {
     opacity: 0;
     transform: translateY(50px);
@@ -75,32 +81,33 @@ p {
 
 .visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0); /* Ramène l'élément en place */
 }
 
+/* === Étincelles d’arrière-plan animées === */
 .sparkle-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
+    pointer-events: none; /* Les clics passent au travers */
     overflow: hidden;
-    z-index: -1; /* En arrière-plan */
+    z-index: -1; /* Derrière tout */
 }
 
-
+/* === Style d'une étincelle === */
 .sparkle {
     position: absolute;
     width: 6px;
     height: 6px;
-    border-radius: 50%;
+    border-radius: 50%; /* Petits cercles blancs */
     background-color: white;
     opacity: 0;
     animation: sparkle-animation linear infinite;
 }
 
-/* Sparkle animation */
+/* === Animation des étincelles === */
 @keyframes sparkle-animation {
     0% {
         opacity: 0;
@@ -109,21 +116,21 @@ p {
 
     50% {
         opacity: 1;
-        transform: scale(1.2);
+        transform: scale(1.2); /* Grossit légèrement */
     }
 
     100% {
         opacity: 0;
-        transform: scale(0.5);
+        transform: scale(0.5); /* Disparaît doucement */
     }
 }
 
-
+/* === Variante plus petite de boîte d'infos === */
 .info-boxa {
     width: 400px;
     height: 400px;
     background: #d7b899;
-    border-radius: 30%;
+    border-radius: 30%; /* Plus rond que carré */
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -133,6 +140,7 @@ p {
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-in-out;
 }
-.info-boxa:hover {
-    transform: scale(1.05);
-}
+
+    .info-boxa:hover {
+        transform: scale(1.05); /* Zoom fluide au survol */
+    }
