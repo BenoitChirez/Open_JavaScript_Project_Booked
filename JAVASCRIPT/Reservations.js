@@ -1,3 +1,9 @@
+/*
+    Cette page contient le code JavaScript pour gérer les réservations.
+    Elle inclut des fonctionnalités telles que l'annulation de réservations, le tri des colonnes d'un tableau et la gestion de l'affichage d'un message lorsque le tableau est vide.
+    Elle gère également la mise en couleur des lignes du tableau en fonction de la date de fin de réservation.
+*/
+
 /**
  * Fonction qui permettra de trier une table HTML
  * 

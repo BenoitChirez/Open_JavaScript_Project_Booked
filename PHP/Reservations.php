@@ -1,3 +1,12 @@
+<!-- 
+    Cette page est la page ou l'on peut voir toutes les réservations de l'utilisateur connecté.
+    Elle affiche un tableau avec les informations sur les livres réservés,
+    la date de début et de fin de réservation, et un bouton pour annuler la réservation.
+    Si l'utilisateur n'a pas de réservations, un message s'affiche pour l'informer.
+    La page utilise une connexion à la base de données pour récupérer les informations sur les réservations.
+    Elle est relié à la page de style Reservation.css pour le style, et à la page de script Reservations.js pour les interactions.
+-->
+
 <?php
 session_start();
 // Activer l'affichage des erreurs
