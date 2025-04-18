@@ -6,7 +6,7 @@ window.addEventListener("DOMContentLoaded", () => {
     
     const descriptions = {
         "1": "Adam, sosie officiel de Tchoupi.",
-        "2": "Benoit , la (im)patience incarné.",
+        "2": "Benoit , la (im)patience incarne.",
         "3": "Maxence: SUPER MEGA STYLE.",
         "4": "Samuel, Trafficant de petits LU.",
         "5": "Shalom, Defenseur au real Madrid."
