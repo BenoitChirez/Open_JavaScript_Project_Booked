@@ -1,3 +1,6 @@
+<!-- page qui affiche les informations sur un livre choisi à partir de la page bibliotheque.php
+     permet de voir le nombre d'exemplaires restants d'un livre et de le réserver si possible -->
+
 <?php
 session_start();
 // Activer l'affichage des erreurs PHP pour la détection des problèmes
